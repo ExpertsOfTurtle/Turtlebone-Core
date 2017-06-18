@@ -1,0 +1,96 @@
+
+package com.turtlebone.core.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+
+import com.turtlebone.core.entity.OptionGroup;
+import com.turtlebone.core.repository.OptionGroupRepository;
+import com.turtlebone.core.model.OptionGroupModel;
+import com.turtlebone.core.service.OptionGroupService;
+import com.turtlebone.core.util.BeanCopyUtils;
+
+@Service
+public class OptionGroupServiceImpl implements OptionGroupService {
+
+	@Autowired
+	private OptionGroupRepository optionGroupRepo;
+	
+
+	/*
+	 * @Transactional is not necessarry for the single atomic CRUD statement for better performance, 
+	 * but you still have to take care of @Transactional for multi-statements scenario.
+	 * if read only,please config as "@Transactional(readOnly = true)",otherwise "@Transactional"
+	 */
+	@Override
+	public int deleteByPrimaryKey(Integer id) {
+		return optionGroupRepo.deleteByPrimaryKey(id);
+	}
+	
+
+    /*
+	 * @Transactional is not necessarry for the single atomic CRUD statement for better performance, 
+	 * but you still have to take care of @Transactional for multi-statements scenario.
+	 * if read only,please config as "@Transactional(readOnly = true)",otherwise "@Transactional"
+	 */
+	@Override
+	public OptionGroupModel findByPrimaryKey(Integer id) {
+		OptionGroup optionGroup = optionGroupRepo.selectByPrimaryKey(id);
+		return BeanCopyUtils.map(optionGroup, OptionGroupModel.class);
+	}
+	
+	/*
+	 * @Transactional is not necessarry for the single atomic CRUD statement for better performance, 
+	 * but you still have to take care of @Transactional for multi-statements scenario.
+	 * if read only,please config as "@Transactional(readOnly = true)",otherwise "@Transactional"
+	 */
+	@Override
+	public int updateByPrimaryKey(OptionGroupModel optionGroupModel) {
+		return optionGroupRepo.updateByPrimaryKey(BeanCopyUtils.map(optionGroupModel, OptionGroup.class));
+	}
+	
+	/*
+	 * @Transactional is not necessarry for the single atomic CRUD statement for better performance, 
+	 * but you still have to take care of @Transactional for multi-statements scenario.
+	 * if read only,please config as "@Transactional(readOnly = true)",otherwise "@Transactional"
+	 */
+	@Override
+	public int updateByPrimaryKeySelective(OptionGroupModel optionGroupModel) {
+		return optionGroupRepo.updateByPrimaryKeySelective(BeanCopyUtils.map(optionGroupModel, OptionGroup.class));
+	}
+	
+
+	/*
+	 * @Transactional is not necessarry for the single atomic CRUD statement for better performance, 
+	 * but you still have to take care of @Transactional for multi-statements scenario.
+	 * if read only,please config as "@Transactional(readOnly = true)",otherwise "@Transactional"
+	 */
+	@Override
+	public int create(OptionGroupModel optionGroupModel) {
+		return optionGroupRepo.insert(BeanCopyUtils.map(optionGroupModel, OptionGroup.class));
+	}
+
+	/*
+	 * @Transactional is not necessarry for the single atomic CRUD statement for better performance, 
+	 * but you still have to take care of @Transactional for multi-statements scenario.
+	 * if read only,please config as "@Transactional(readOnly = true)",otherwise "@Transactional"
+	 */
+	@Override
+	public int createSelective(OptionGroupModel optionGroupModel) {
+		return optionGroupRepo.insertSelective(BeanCopyUtils.map(optionGroupModel, OptionGroup.class));
+	}
+
+	/*
+	 * @Transactional is not necessarry for the single atomic CRUD statement for better performance, 
+	 * but you still have to take care of @Transactional for multi-statements scenario.
+	 * if read only,please config as "@Transactional(readOnly = true)",otherwise "@Transactional"
+	 */
+	@Override
+	public int selectCount(OptionGroupModel optionGroupModel) {
+		return optionGroupRepo.selectCount(BeanCopyUtils.map(optionGroupModel, OptionGroup.class));
+	}
+
+
+
+}

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.turtlebone.core.repository.OptionGroupRepository" >
+  <resultMap id="BaseResultMap" type="com.turtlebone.core.entity.OptionGroup" >
+    <id column="groupid" property="groupid" jdbcType="INTEGER" />
+    <result column="groupname" property="groupname" jdbcType="VARCHAR" />
+  </resultMap>
+
+ <sql id="Base_Column_List" >
+   `groupid`,
+   `groupname`
+ </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from optiongroup
+    where groupid = #{groupid,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from optiongroup
+    where groupid = #{groupid,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.turtlebone.core.entity.OptionGroup" >
+    insert into optiongroup ( 
+     `groupid`,
+     `groupname`
+    )
+    values (
+     #{groupid,jdbcType=INTEGER},
+     #{groupname,jdbcType=VARCHAR}
+ )
+  </insert>
+  
+  
+  
+  <insert id="insertSelective" parameterType="com.turtlebone.core.entity.OptionGroup" >
+    insert into optiongroup
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="groupid != null" >
+        `groupid`,
+      </if>
+      <if test="groupname != null" >
+        `groupname`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="groupid != null" >
+        #{groupid,jdbcType=INTEGER},
+      </if>
+      <if test="groupname != null" >
+        #{groupname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.turtlebone.core.entity.OptionGroup" >
+    update optiongroup
+	  <set>
+       <if test="groupname != null" >
+        `groupname`= #{groupname,jdbcType=VARCHAR},
+       </if>
+          </set>
+    where groupid = #{groupid,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.turtlebone.core.entity.OptionGroup" >
+    update optiongroup
+    set 
+       `groupname` = #{groupname,jdbcType=VARCHAR}
+     where groupid = #{groupid,jdbcType=INTEGER}
+  </update>
+  
+
+  
+  <select id="selectCount" resultType="java.lang.Integer" parameterType="com.turtlebone.core.entity.OptionGroup" >
+    select count(*) from optiongroup
+    <where >
+            <if test="groupid != null" >
+        and `groupid` = #{groupid,jdbcType=INTEGER}
+      </if>
+            <if test="groupname != null" >
+        and `groupname` = #{groupname,jdbcType=VARCHAR}
+      </if>
+          </where>
+  </select>
+
+    <select id="selectPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from optiongroup where 1 = 1 
+        <if test="optionGroup.groupid != null" >
+      and `groupid` = #{optionGroup.groupid,jdbcType=INTEGER}
+    </if>
+        <if test="optionGroup.groupname != null" >
+      and `groupname` = #{optionGroup.groupname,jdbcType=VARCHAR}
+    </if>
+        <if test="pageable.sort != null" >
+      order by 
+      <foreach collection="pageable.sort" item="order" separator="," >
+        <if test="
+   order.property == 'groupid' 
+   || order.property == 'groupname'
+        " >
+        		${order.property} ${order.direction}
+        </if>
+      </foreach>
+    </if>
+    <if test="pageable.offset >= 0 and pageable.pageSize > 0" >
+      limit ${pageable.offset}, ${pageable.pageSize}
+    </if>
+  </select>
+ </mapper>
+  
+
+  
+	
