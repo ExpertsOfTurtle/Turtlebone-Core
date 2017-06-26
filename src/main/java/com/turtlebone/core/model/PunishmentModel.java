@@ -5,10 +5,10 @@ import com.turtlebone.core.entity.Problem;
 
 import lombok.Data;
 @Data
-public class OptionGroupModel implements Serializable{
+public class PunishmentModel implements Serializable{
 	
-	private Integer groupid;
-	private String groupname;
+	private Integer id;
 	private Integer type;
-		
+	private Integer val;
+			
 }

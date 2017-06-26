@@ -1,6 +1,10 @@
 package com.turtlebone.core.model;
 import java.io.Serializable;
 
+import com.turtlebone.core.entity.Problem;
+
+import lombok.Data;
+@Data
 public class ActivityModel implements Serializable{
 	
 	private Integer idactivity;
@@ -8,55 +12,12 @@ public class ActivityModel implements Serializable{
 	private String datetime;
 	private String type;
 	private String description;
+	private Long result1;
+	private Long result2;
+	private Long result3;
+	private String strresult1;
+	private String strresult2;
+	private String strresult3;
 	private String result;
-		
-	public void setIdactivity(Integer idactivity){
-		this.idactivity = idactivity;
-	}
-	
-	public Integer getIdactivity(){
-		return this.idactivity;
-	}
-		
-	public void setUsername(String username){
-		this.username = username;
-	}
-	
-	public String getUsername(){
-		return this.username;
-	}
-		
-	public void setDatetime(String datetime){
-		this.datetime = datetime;
-	}
-	
-	public String getDatetime(){
-		return this.datetime;
-	}
-		
-	public void setType(String type){
-		this.type = type;
-	}
-	
-	public String getType(){
-		return this.type;
-	}
-		
-	public void setDescription(String description){
-		this.description = description;
-	}
-	
-	public String getDescription(){
-		return this.description;
-	}
-		
-	public void setResult(String result){
-		this.result = result;
-	}
-	
-	public String getResult(){
-		return this.result;
-	}
-		
 		
 }

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.turtlebone.core.repository.PunishmentRepository" >
+  <resultMap id="BaseResultMap" type="com.turtlebone.core.entity.Punishment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="val" property="val" jdbcType="INTEGER" />
+  </resultMap>
+
+ <sql id="Base_Column_List" >
+   `id`,
+   `type`,
+   `val`
+ </sql>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from punishment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from punishment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="com.turtlebone.core.entity.Punishment" >
+    insert into punishment ( 
+     `id`,
+     `type`,
+     `val`
+    )
+    values (
+     #{id,jdbcType=INTEGER},
+     #{type,jdbcType=INTEGER},
+     #{val,jdbcType=INTEGER}
+ )
+  </insert>
+  
+  
+  
+  <insert id="insertSelective" parameterType="com.turtlebone.core.entity.Punishment" >
+    insert into punishment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        `id`,
+      </if>
+      <if test="type != null" >
+        `type`,
+      </if>
+      <if test="val != null" >
+        `val`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="val != null" >
+        #{val,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+  <update id="updateByPrimaryKeySelective" parameterType="com.turtlebone.core.entity.Punishment" >
+    update punishment
+	  <set>
+       <if test="type != null" >
+        `type`= #{type,jdbcType=INTEGER},
+       </if>
+       <if test="val != null" >
+        `val`= #{val,jdbcType=INTEGER},
+       </if>
+          </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKey" parameterType="com.turtlebone.core.entity.Punishment" >
+    update punishment
+    set 
+       `type` = #{type,jdbcType=INTEGER},
+       `val` = #{val,jdbcType=INTEGER}
+     where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+
+  
+  <select id="selectCount" resultType="java.lang.Integer" parameterType="com.turtlebone.core.entity.Punishment" >
+    select count(*) from punishment
+    <where >
+            <if test="id != null" >
+        and `id` = #{id,jdbcType=INTEGER}
+      </if>
+            <if test="type != null" >
+        and `type` = #{type,jdbcType=INTEGER}
+      </if>
+            <if test="val != null" >
+        and `val` = #{val,jdbcType=INTEGER}
+      </if>
+          </where>
+  </select>
+
+    <select id="selectPage" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from punishment where 1 = 1 
+        <if test="punishment.id != null" >
+      and `id` = #{punishment.id,jdbcType=INTEGER}
+    </if>
+        <if test="punishment.type != null" >
+      and `type` = #{punishment.type,jdbcType=INTEGER}
+    </if>
+        <if test="punishment.val != null" >
+      and `val` = #{punishment.val,jdbcType=INTEGER}
+    </if>
+        <if test="pageable.sort != null" >
+      order by 
+      <foreach collection="pageable.sort" item="order" separator="," >
+        <if test="
+   order.property == 'id' 
+   || order.property == 'type'
+   || order.property == 'val'
+        " >
+        		${order.property} ${order.direction}
+        </if>
+      </foreach>
+    </if>
+    <if test="pageable.offset >= 0 and pageable.pageSize > 0" >
+      limit ${pageable.offset}, ${pageable.pageSize}
+    </if>
+  </select>
+ </mapper>
+  
+
+  
+	

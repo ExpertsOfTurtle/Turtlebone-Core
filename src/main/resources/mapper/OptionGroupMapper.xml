@@ -4,11 +4,13 @@
   <resultMap id="BaseResultMap" type="com.turtlebone.core.entity.OptionGroup" >
     <id column="groupid" property="groupid" jdbcType="INTEGER" />
     <result column="groupname" property="groupname" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
   </resultMap>
 
  <sql id="Base_Column_List" >
    `groupid`,
-   `groupname`
+   `groupname`,
+   `type`
  </sql>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -28,11 +30,13 @@
   useGeneratedKeys="true" keyProperty="groupid"  >
     insert into optiongroup ( 
      `groupid`,
-     `groupname`
+     `groupname`,
+     `type`
     )
     values (
      #{groupid,jdbcType=INTEGER},
-     #{groupname,jdbcType=VARCHAR}
+     #{groupname,jdbcType=VARCHAR},
+     #{type,jdbcType=INTEGER}
  )
   </insert>
   
@@ -47,6 +51,9 @@
       <if test="groupname != null" >
         `groupname`,
       </if>
+      <if test="type != null" >
+        `type`,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="groupid != null" >
@@ -54,6 +61,9 @@
       </if>
       <if test="groupname != null" >
         #{groupname,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -64,6 +74,9 @@
        <if test="groupname != null" >
         `groupname`= #{groupname,jdbcType=VARCHAR},
        </if>
+       <if test="type != null" >
+        `type`= #{type,jdbcType=INTEGER},
+       </if>
           </set>
     where groupid = #{groupid,jdbcType=INTEGER}
   </update>
@@ -71,7 +84,8 @@
   <update id="updateByPrimaryKey" parameterType="com.turtlebone.core.entity.OptionGroup" >
     update optiongroup
     set 
-       `groupname` = #{groupname,jdbcType=VARCHAR}
+       `groupname` = #{groupname,jdbcType=VARCHAR},
+       `type` = #{type,jdbcType=INTEGER}
      where groupid = #{groupid,jdbcType=INTEGER}
   </update>
   
@@ -86,6 +100,9 @@
             <if test="groupname != null" >
         and `groupname` = #{groupname,jdbcType=VARCHAR}
       </if>
+            <if test="type != null" >
+        and `type` = #{type,jdbcType=INTEGER}
+      </if>
           </where>
   </select>
 
@@ -99,12 +116,16 @@
         <if test="optionGroup.groupname != null" >
       and `groupname` = #{optionGroup.groupname,jdbcType=VARCHAR}
     </if>
+        <if test="optionGroup.type != null" >
+      and `type` = #{optionGroup.type,jdbcType=INTEGER}
+    </if>
         <if test="pageable.sort != null" >
       order by 
       <foreach collection="pageable.sort" item="order" separator="," >
         <if test="
    order.property == 'groupid' 
    || order.property == 'groupname'
+   || order.property == 'type'
         " >
         		${order.property} ${order.direction}
         </if>
