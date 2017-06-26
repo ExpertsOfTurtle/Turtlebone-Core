@@ -154,6 +154,29 @@
       limit ${pageable.offset}, ${pageable.pageSize}
     </if>
   </select>
+  
+  <insert id="batchInsert" parameterType="java.util.List">
+    insert into options ( 
+    `groupid`,
+     `optionname`,
+     `probability`
+    )
+    values     
+    <foreach collection="list" item="item" index="index" separator="," >  
+     (#{item.groupid,jdbcType=INTEGER},
+     #{item.optionname,jdbcType=VARCHAR},
+     #{item.probability,jdbcType=INTEGER})  
+    </foreach>    
+  </insert>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from options
+  </select>
+  <delete id="deleteByGroupId" parameterType="java.lang.Integer" >
+    delete from options
+    where groupid = #{groupid,jdbcType=INTEGER}
+  </delete>
  </mapper>
   
 

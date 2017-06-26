@@ -27,4 +27,8 @@ public interface OptionGroupRepository{
 
     List<OptionGroup> selectPage(@Param("optionGroup") OptionGroup optionGroup, @Param("pageable") Pageable pageable);
 	
+    OptionGroup selectByName(String groupname);
+    
+    List<OptionGroup> selectAll();
+    
 }

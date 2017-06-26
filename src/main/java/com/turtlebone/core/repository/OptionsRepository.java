@@ -27,4 +27,9 @@ public interface OptionsRepository{
 
     List<Options> selectPage(@Param("options") Options options, @Param("pageable") Pageable pageable);
 	
+    int batchInsert(List<Options> list);
+    
+    List<Options> selectAll();
+    
+    int deleteByGroupId(Integer groupId);
 }

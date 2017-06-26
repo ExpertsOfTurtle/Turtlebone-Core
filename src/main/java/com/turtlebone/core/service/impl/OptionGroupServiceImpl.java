@@ -1,6 +1,8 @@
 
 package com.turtlebone.core.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -89,6 +91,20 @@ public class OptionGroupServiceImpl implements OptionGroupService {
 	@Override
 	public int selectCount(OptionGroupModel optionGroupModel) {
 		return optionGroupRepo.selectCount(BeanCopyUtils.map(optionGroupModel, OptionGroup.class));
+	}
+
+
+	@Override
+	public OptionGroupModel selectByName(String groupname) {
+		OptionGroup group = optionGroupRepo.selectByName(groupname);
+		return BeanCopyUtils.map(group, OptionGroupModel.class);
+	}
+
+
+	@Override
+	public List<OptionGroupModel> selectAll() {
+		List<OptionGroup> list = optionGroupRepo.selectAll();
+		return BeanCopyUtils.mapList(list, OptionGroupModel.class);
 	}
 
 

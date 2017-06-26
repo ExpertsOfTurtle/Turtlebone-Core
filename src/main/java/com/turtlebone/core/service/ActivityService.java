@@ -1,6 +1,8 @@
 
 package com.turtlebone.core.service;
 
+import java.util.List;
+
 import com.turtlebone.core.model.ActivityModel;
 
 public interface ActivityService{
@@ -17,7 +19,7 @@ public interface ActivityService{
 	
 	public int deleteByPrimaryKey(Integer id);
 	
-
 	public int selectCount(ActivityModel activityModel);
 	
+	public List<ActivityModel> selectByCondition(String username, String type);
 }

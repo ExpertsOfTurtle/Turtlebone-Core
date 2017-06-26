@@ -1,6 +1,10 @@
 
 package com.turtlebone.core.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -92,5 +96,17 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 
 
+	@Override
+	public List<ActivityModel> selectByCondition(String username, String type) {
+		Map<String, String> map = new HashMap<>();
+		if (username != null) {
+			map.put("username", username);
+		}
+		if (type != null) {
+			map.put("type", type);
+		}
+		List<Activity> list = activityRepo.selectByCondition(map);
+		return BeanCopyUtils.mapList(list, ActivityModel.class);
+	}
 
 }
