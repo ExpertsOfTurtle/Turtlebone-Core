@@ -70,7 +70,9 @@ public class OptionGroupServiceImpl implements OptionGroupService {
 	 */
 	@Override
 	public int create(OptionGroupModel optionGroupModel) {
-		return optionGroupRepo.insert(BeanCopyUtils.map(optionGroupModel, OptionGroup.class));
+		OptionGroup group = BeanCopyUtils.map(optionGroupModel, OptionGroup.class);
+		optionGroupRepo.insert(group);
+		return group.getGroupid();
 	}
 
 	/*

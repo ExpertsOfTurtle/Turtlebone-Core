@@ -27,9 +27,11 @@ import com.turtlebone.core.model.OptionGroupModel;
 import com.turtlebone.core.model.OptionsModel;
 import com.turtlebone.core.service.OptionGroupService;
 import com.turtlebone.core.service.OptionsService;
+import com.turtlebone.core.util.BeanCopyUtils;
 
 @Controller
 @EnableAutoConfiguration
+@RequestMapping(value="/choose")
 public class ChooseController {
 	private static Logger logger = LoggerFactory.getLogger(ChooseController.class);
 	
@@ -40,7 +42,7 @@ public class ChooseController {
 	private OptionsService optionsService;
 	
 	@RequestMapping(value="/create", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<?> create(ChooseInfo chooseInfo) {
+	public @ResponseBody ResponseEntity<?> create(@RequestBody ChooseInfo chooseInfo) {
 		if (chooseInfo.getGroup() == null) {
 			logger.error("group is null");
 			return ResponseEntity.ok("Group is null");
@@ -49,14 +51,21 @@ public class ChooseController {
 			return ResponseEntity.ok("options is empty");
 		}
 		
-		optionGroupService.create(chooseInfo.getGroup());
+		Integer groupId = optionGroupService.create(chooseInfo.getGroup());
+		if (groupId == null || groupId == 0) {
+			logger.error("fail to create group");
+			return ResponseEntity.ok("Fail to create group");
+		}
+		for (OptionsModel om : chooseInfo.getOptions()) {
+			om.setGroupid(groupId);
+		}
 		optionsService.batchInsert(chooseInfo.getOptions());
 		
 		return ResponseEntity.ok("OK");
 	}
 	
 	@RequestMapping(value="/update", method = RequestMethod.PUT)
-	public @ResponseBody ResponseEntity<?> modify(ChooseInfo chooseInfo) {
+	public @ResponseBody ResponseEntity<?> modify(@RequestBody ChooseInfo chooseInfo) {
 		if (chooseInfo.getGroup() == null) {
 			logger.error("group is null");
 			return ResponseEntity.ok("Group is null");
@@ -65,11 +74,21 @@ public class ChooseController {
 			return ResponseEntity.ok("options is empty");
 		}
 		Integer gid = chooseInfo.getGroup().getGroupid();
+		if (gid == null) {
+			logger.error("groupId is required");
+			return ResponseEntity.ok("groupdId is required");
+		}
 		OptionGroupModel group = optionGroupService.findByPrimaryKey(gid);
 		if (group == null) {
 			logger.error("no such group!");
 			return ResponseEntity.ok("no such group!");
 		}
+		for (OptionsModel om : chooseInfo.getOptions()) {
+			om.setGroupid(gid);
+		}
+		OptionGroupModel ogm = BeanCopyUtils.map(chooseInfo.getGroup(), OptionGroupModel.class);
+		optionGroupService.updateByPrimaryKeySelective(ogm);
+		
 		optionsService.deleteByGroupId(gid);
 		optionsService.batchInsert(chooseInfo.getOptions());
 		
