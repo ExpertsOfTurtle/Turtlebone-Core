@@ -36,8 +36,9 @@ public class MainController {
 	 * 进入主页
 	 * */
 	@RequestMapping(value="/main")
-	public String getMainPage() {
+	public String getMainPage(Map<String, Object> model) {
 		logger.debug("go to index.vm");
+		model.put("wf", "DFSDFS");
 		return "index";
 	}
 

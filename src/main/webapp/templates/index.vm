@@ -7,7 +7,9 @@
 </head>
 <body>
 	<div id="my-page">
-		<div id="my-header"/>
+		<div id="my-header">
+			<h2>___${wf}...</h2>
+		</div>
 		<div id="my-content">
 			<a href="#my-menu">Open the menu</a>
 			<a href="#my-page">Close the menu</a>
