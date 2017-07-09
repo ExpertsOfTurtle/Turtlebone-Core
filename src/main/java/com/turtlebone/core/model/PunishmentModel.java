@@ -9,6 +9,9 @@ public class PunishmentModel implements Serializable{
 	
 	private Integer id;
 	private Integer type;
+	private String subtype;
 	private Integer val;
-			
+	private String description;
+	
+		
 }

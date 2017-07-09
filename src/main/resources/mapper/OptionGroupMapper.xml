@@ -23,7 +23,6 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from optiongroup
     where groupid = #{groupid,jdbcType=INTEGER}
-    limit 1
   </delete>
   
   <insert id="insert" parameterType="com.turtlebone.core.entity.OptionGroup"

@@ -4,13 +4,17 @@
   <resultMap id="BaseResultMap" type="com.turtlebone.core.entity.Punishment" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="subtype" property="subtype" jdbcType="VARCHAR" />
     <result column="val" property="val" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
   </resultMap>
 
  <sql id="Base_Column_List" >
    `id`,
    `type`,
-   `val`
+   `subtype`,
+   `val`,
+   `description`
  </sql>
   
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -29,12 +33,16 @@
     insert into punishment ( 
      `id`,
      `type`,
-     `val`
+     `subtype`,
+     `val`,
+     `description`
     )
     values (
      #{id,jdbcType=INTEGER},
      #{type,jdbcType=INTEGER},
-     #{val,jdbcType=INTEGER}
+     #{subtype,jdbcType=VARCHAR},
+     #{val,jdbcType=INTEGER},
+     #{description,jdbcType=VARCHAR}
  )
   </insert>
   
@@ -49,8 +57,14 @@
       <if test="type != null" >
         `type`,
       </if>
+      <if test="subtype != null" >
+        `subtype`,
+      </if>
       <if test="val != null" >
         `val`,
+      </if>
+      <if test="description != null" >
+        `description`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -60,8 +74,14 @@
       <if test="type != null" >
         #{type,jdbcType=INTEGER},
       </if>
+      <if test="subtype != null" >
+        #{subtype,jdbcType=VARCHAR},
+      </if>
       <if test="val != null" >
         #{val,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -72,8 +92,14 @@
        <if test="type != null" >
         `type`= #{type,jdbcType=INTEGER},
        </if>
+       <if test="subtype != null" >
+        `subtype`= #{subtype,jdbcType=VARCHAR},
+       </if>
        <if test="val != null" >
         `val`= #{val,jdbcType=INTEGER},
+       </if>
+       <if test="description != null" >
+        `description`= #{description,jdbcType=VARCHAR},
        </if>
           </set>
     where id = #{id,jdbcType=INTEGER}
@@ -83,7 +109,9 @@
     update punishment
     set 
        `type` = #{type,jdbcType=INTEGER},
-       `val` = #{val,jdbcType=INTEGER}
+       `subtype` = #{subtype,jdbcType=VARCHAR},
+       `val` = #{val,jdbcType=INTEGER},
+       `description` = #{description,jdbcType=VARCHAR}
      where id = #{id,jdbcType=INTEGER}
   </update>
   
@@ -98,8 +126,14 @@
             <if test="type != null" >
         and `type` = #{type,jdbcType=INTEGER}
       </if>
+            <if test="subtype != null" >
+        and `subtype` = #{subtype,jdbcType=VARCHAR}
+      </if>
             <if test="val != null" >
         and `val` = #{val,jdbcType=INTEGER}
+      </if>
+            <if test="description != null" >
+        and `description` = #{description,jdbcType=VARCHAR}
       </if>
           </where>
   </select>
@@ -114,8 +148,14 @@
         <if test="punishment.type != null" >
       and `type` = #{punishment.type,jdbcType=INTEGER}
     </if>
+        <if test="punishment.subtype != null" >
+      and `subtype` = #{punishment.subtype,jdbcType=VARCHAR}
+    </if>
         <if test="punishment.val != null" >
       and `val` = #{punishment.val,jdbcType=INTEGER}
+    </if>
+        <if test="punishment.description != null" >
+      and `description` = #{punishment.description,jdbcType=VARCHAR}
     </if>
         <if test="pageable.sort != null" >
       order by 
@@ -123,7 +163,9 @@
         <if test="
    order.property == 'id' 
    || order.property == 'type'
+   || order.property == 'subtype'
    || order.property == 'val'
+   || order.property == 'description'
         " >
         		${order.property} ${order.direction}
         </if>
