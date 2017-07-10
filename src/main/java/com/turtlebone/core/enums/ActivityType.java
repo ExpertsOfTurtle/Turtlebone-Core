@@ -8,4 +8,5 @@ public enum ActivityType {
 	FINE,		//罚款
 	ADDGROUP,	//添加选项组
 	SUDOKU,		//数独
+	SETTLEMENT,	//结算
 }

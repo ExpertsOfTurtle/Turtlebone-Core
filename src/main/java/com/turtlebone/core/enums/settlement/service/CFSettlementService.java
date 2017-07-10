@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.turtlebone.core.builder.activity.SettlementActivityBuilder;
 import com.turtlebone.core.enums.problem.ProblemType;
+import com.turtlebone.core.model.ActivityModel;
 import com.turtlebone.core.model.ProblemModel;
 import com.turtlebone.core.model.UserModel;
+import com.turtlebone.core.service.ActivityService;
 import com.turtlebone.core.service.ProblemService;
 import com.turtlebone.core.service.UserService;
 import com.turtlebone.core.util.DateUtil;
@@ -19,7 +22,11 @@ public class CFSettlementService {
 	private ProblemService problemService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private ActivityService activityService;
 
+	@Autowired
+	private SettlementActivityBuilder builder;
 	/*
 	 * For those daily problem, 2RMB/Problem
 	 * */
@@ -111,5 +118,8 @@ public class CFSettlementService {
 		bal += amount;
 		user.setBalance(bal);
 		userService.updateByPrimaryKey(user);
+		
+		ActivityModel activity = builder.build(username, null, amount);
+		activityService.create(activity);
 	}
 }
