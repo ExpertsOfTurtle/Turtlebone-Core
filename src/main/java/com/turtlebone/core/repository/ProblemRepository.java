@@ -2,6 +2,8 @@ package com.turtlebone.core.repository;
 
 import com.turtlebone.core.entity.Problem;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -26,5 +28,6 @@ public interface ProblemRepository{
     int selectCount(Problem problem);
 
     List<Problem> selectPage(@Param("problem") Problem problem, @Param("pageable") Pageable pageable);
-	
+
+    List<Problem> selectByCondition(Map map);
 }

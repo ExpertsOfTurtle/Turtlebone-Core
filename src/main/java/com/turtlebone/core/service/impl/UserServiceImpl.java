@@ -92,5 +92,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 
+	@Override
+	public UserModel selectByUsername(String username) {
+		User user = userRepo.selectByUsername(username);
+		return BeanCopyUtils.map(user, UserModel.class);
+	}
+
+
 
 }

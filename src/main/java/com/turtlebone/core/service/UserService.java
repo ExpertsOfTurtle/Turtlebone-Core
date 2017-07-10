@@ -20,4 +20,5 @@ public interface UserService{
 
 	public int selectCount(UserModel userModel);
 	
+	public UserModel selectByUsername(String username);
 }

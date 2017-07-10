@@ -213,6 +213,13 @@
       limit ${pageable.offset}, ${pageable.pageSize}
     </if>
   </select>
+  <select id="selectByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where login_name = #{username,jdbcType=VARCHAR}
+    limit 1
+  </select>
  </mapper>
   
 

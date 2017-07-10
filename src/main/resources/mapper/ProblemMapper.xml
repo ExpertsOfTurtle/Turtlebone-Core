@@ -217,6 +217,24 @@
       limit ${pageable.offset}, ${pageable.pageSize}
     </if>
   </select>
+   <select id="selectByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from problems
+    where 1=1
+    <if test="username != null" >
+    	and respondent=#{username,jdbcType=VARCHAR}
+    </if>
+    <if test="from != null and to != null" >
+    	and deadline between #{from,jdbcType=VARCHAR} and #{to,jdbcType=VARCHAR}
+    </if>
+    <if test="status != null" >
+    	and status=#{status,jdbcType=VARCHAR}
+    </if>
+    <if test="type != null" >
+    	and type=#{type,jdbcType=VARCHAR}
+    </if>
+  </select>
  </mapper>
   
 

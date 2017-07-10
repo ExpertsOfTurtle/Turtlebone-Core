@@ -1,6 +1,10 @@
 
 package com.turtlebone.core.service;
 
+import java.util.List;
+import java.util.Map;
+
+import com.turtlebone.core.entity.Problem;
 import com.turtlebone.core.model.ProblemModel;
 
 public interface ProblemService{
@@ -20,4 +24,6 @@ public interface ProblemService{
 
 	public int selectCount(ProblemModel problemModel);
 	
+	public List<ProblemModel> selectByCondition(String username, String type, 
+			String status, String deadlineFrom, String deadlineTo);
 }

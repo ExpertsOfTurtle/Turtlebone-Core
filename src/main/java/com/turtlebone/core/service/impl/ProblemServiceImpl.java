@@ -1,6 +1,10 @@
 
 package com.turtlebone.core.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -89,6 +93,20 @@ public class ProblemServiceImpl implements ProblemService {
 	@Override
 	public int selectCount(ProblemModel problemModel) {
 		return problemRepo.selectCount(BeanCopyUtils.map(problemModel, Problem.class));
+	}
+
+
+	@Override
+	public List<ProblemModel> selectByCondition(String username, String type, 
+			String status, String deadlineFrom, String deadlineTo) {
+		Map<String, String> map = new HashMap<>();
+		map.put("username", username);
+		map.put("type", type);
+		map.put("status", status);
+		map.put("from", deadlineFrom);
+		map.put("to", deadlineTo);
+		List<Problem> list = problemRepo.selectByCondition(map);
+		return BeanCopyUtils.mapList(list, ProblemModel.class);
 	}
 
 

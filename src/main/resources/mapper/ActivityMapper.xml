@@ -329,10 +329,10 @@
     from activity
     where 1=1
      <if test="username != null" >
-     	and `username` = #{activity.username,jdbcType=VARCHAR}
+     	and `username` = #{username,jdbcType=VARCHAR}
      </if>
      <if test="type != null" >
-     	and `type` = #{activity.type,jdbcType=VARCHAR}
+     	and `type` = #{type,jdbcType=VARCHAR}
      </if>
      order by idactivity desc
   </select>
