@@ -72,7 +72,10 @@ public class ActivityServiceImpl implements ActivityService {
 	 */
 	@Override
 	public int create(ActivityModel activityModel) {
-		return activityRepo.insert(BeanCopyUtils.map(activityModel, Activity.class));
+		Activity activity = BeanCopyUtils.map(activityModel, Activity.class);
+		activityRepo.insert(activity);
+		activityModel.setIdactivity(activity.getIdactivity());
+		return activity.getIdactivity();
 	}
 
 	/*

@@ -43,7 +43,8 @@
     where idactivity = #{idactivity,jdbcType=INTEGER}
   </delete>
   
-  <insert id="insert" parameterType="com.turtlebone.core.entity.Activity" >
+  <insert id="insert" parameterType="com.turtlebone.core.entity.Activity" 
+  useGeneratedKeys="true" keyProperty="idactivity">
     insert into activity ( 
      `idactivity`,
      `username`,

@@ -1,6 +1,7 @@
 package com.turtlebone.core.enums.sudoku;
 
 public enum SudokuLevel {
+	TEST(0, "测试"),
 	SUPER_EASY(1, "初心级"),
 	VERY_EASY(2, "入门级"),
 	EASY(3, "初级"),
