@@ -25,5 +25,5 @@ public interface ProblemService{
 	public int selectCount(ProblemModel problemModel);
 	
 	public List<ProblemModel> selectByCondition(String username, String type, 
-			String status, String deadlineFrom, String deadlineTo);
+			String status, String deadlineFrom, String deadlineTo, String order);
 }

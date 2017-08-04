@@ -98,13 +98,14 @@ public class ProblemServiceImpl implements ProblemService {
 
 	@Override
 	public List<ProblemModel> selectByCondition(String username, String type, 
-			String status, String deadlineFrom, String deadlineTo) {
+			String status, String deadlineFrom, String deadlineTo, String order) {
 		Map<String, String> map = new HashMap<>();
 		map.put("username", username);
 		map.put("type", type);
 		map.put("status", status);
 		map.put("from", deadlineFrom);
 		map.put("to", deadlineTo);
+		map.put("order", order);
 		List<Problem> list = problemRepo.selectByCondition(map);
 		return BeanCopyUtils.mapList(list, ProblemModel.class);
 	}

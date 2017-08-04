@@ -35,7 +35,7 @@ public class CFSettlementService {
 		String status = "0";
 		String from = DateUtil.getLastMonday();
 		String to = DateUtil.getLastSunday();
-		List<ProblemModel> list = problemService.selectByCondition(username, type, status, from, to);
+		List<ProblemModel> list = problemService.selectByCondition(username, type, status, from, to, null);
 		
 		int amount = list.size() * 2;
 		updateBalance(username, amount);
@@ -50,7 +50,7 @@ public class CFSettlementService {
 		String status = "0";
 		String from = DateUtil.getLastMonday();
 		String to = DateUtil.getLastSunday();
-		List<ProblemModel> list = problemService.selectByCondition(username, type, status, from, to);
+		List<ProblemModel> list = problemService.selectByCondition(username, type, status, from, to, null);
 		
 		int amount = 0;
 		int n = list.size();
@@ -73,7 +73,7 @@ public class CFSettlementService {
 		String status = "0";
 		String from = DateUtil.getLastMonday();
 		String to = DateUtil.getLastSunday();
-		List<ProblemModel> list = problemService.selectByCondition(username, type, status, from, to);
+		List<ProblemModel> list = problemService.selectByCondition(username, type, status, from, to, null);
 		
 		int amount = 0;
 		int n = list.size();
@@ -96,7 +96,7 @@ public class CFSettlementService {
 		String status = "0";
 		String from = DateUtil.getLastMonday();
 		String to = DateUtil.getLastSunday();
-		List<ProblemModel> list = problemService.selectByCondition(username, type, status, from, to);
+		List<ProblemModel> list = problemService.selectByCondition(username, type, status, from, to, null);
 		
 		int amount = 0;
 		int n = list.size();

@@ -107,7 +107,19 @@ public class ChooseController {
 	
 	@RequestMapping(value="/query", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<?> query() {
+		List<ChooseInfo> result = selectAllOptions();
+		return ResponseEntity.ok(result);
+	}
+	@RequestMapping(value="/selectpage")
+	public String getMainPage(Map<String, Object> model) {
+		logger.debug("choose.vm");
+		List<ChooseInfo> result = selectAllOptions();
 		
+		model.put("chooseList", result);
+		return "choose";
+	}	
+	
+	private List<ChooseInfo> selectAllOptions() {
 		List<OptionGroupModel> groupList = optionGroupService.selectAll();
 		List<OptionsModel> optionList = optionsService.selectAll();
 		Map<Integer, ChooseInfo> map = new HashMap<>();
@@ -132,8 +144,6 @@ public class ChooseController {
 		for (Entry<Integer, ChooseInfo> entry : map.entrySet()) {
 			result.add(entry.getValue());
 		}
-		
-		return ResponseEntity.ok(result);
+		return result;
 	}
-	
 }

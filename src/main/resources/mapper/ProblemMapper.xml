@@ -234,6 +234,9 @@
     <if test="type != null" >
     	and type=#{type,jdbcType=VARCHAR}
     </if>
+    <if test="order != null" >
+    	order by #{order,jdbcType=VARCHAR} desc
+    </if>
   </select>
  </mapper>
   

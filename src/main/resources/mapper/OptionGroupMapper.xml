@@ -146,6 +146,11 @@
     <include refid="Base_Column_List" />
     from optiongroup
   </select>
+  <select id="selectPageLimit" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from optiongroup limit ${offset}, ${pageSize}
+  </select>
  </mapper>
   
 
