@@ -30,4 +30,6 @@ public interface ProblemRepository{
     List<Problem> selectPage(@Param("problem") Problem problem, @Param("pageable") Pageable pageable);
 
     List<Problem> selectByCondition(Map map);
+    
+    Problem selectIdOfNextProblem(Map map);
 }

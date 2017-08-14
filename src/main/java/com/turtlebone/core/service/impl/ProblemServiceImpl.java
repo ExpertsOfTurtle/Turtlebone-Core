@@ -111,5 +111,12 @@ public class ProblemServiceImpl implements ProblemService {
 	}
 
 
-
+	@Override
+	public ProblemModel selectIdOfNextProblem(String username, String type) {
+		Map<String, String> map = new HashMap<>();
+		map.put("username", username);
+		map.put("type", type);
+		Problem problem = problemRepo.selectIdOfNextProblem(map);
+		return BeanCopyUtils.map(problem, ProblemModel.class);
+	}
 }

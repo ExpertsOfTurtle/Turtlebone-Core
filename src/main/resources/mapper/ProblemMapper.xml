@@ -238,6 +238,22 @@
     	order by #{order,jdbcType=VARCHAR} desc
     </if>
   </select>
+  <select id="selectIdOfNextProblem" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    SELECT 
+    <include refid="Base_Column_List" />
+     FROM problems 
+    	where status = 0 
+    	and respondent= #{username,jdbcType=VARCHAR}
+    	and type=#{type,jdbcType=VARCHAR}
+		and deadline = 
+		(SELECT min(deadline) FROM 
+			problems 
+				where status = 0 
+				and type=#{type,jdbcType=VARCHAR}
+				and respondent=#{username,jdbcType=VARCHAR} 
+				and deadline is not null)
+		limit 1
+  </select>
  </mapper>
   
 

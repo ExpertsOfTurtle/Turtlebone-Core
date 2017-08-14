@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.turtlebone.core.bean.ChooseInfo;
+import com.turtlebone.core.bean.CompleteProblemRequest;
 import com.turtlebone.core.bean.QueryProblemRequest;
 import com.turtlebone.core.model.OptionGroupModel;
 import com.turtlebone.core.model.OptionsModel;
@@ -49,6 +50,17 @@ public class CFController {
 				"deadline");
 		return ResponseEntity.ok(list);
 	}
-	
-	
+
+	@RequestMapping(value="/insert", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<?> insert(@RequestBody CompleteProblemRequest request)  {
+		ProblemModel problem = problemService.selectIdOfNextProblem(request.getUsername(), request.getType());
+		if (problem == null) {
+			logger.warn("根本就没有可以完成的题！");
+			return ResponseEntity.ok("根本就没有可以完成的题！");
+		}
+		problem.setStatus("1");
+		problem.setProblemNo(request.getUrl());
+		problemService.updateByPrimaryKey(problem);
+		return ResponseEntity.ok(problem);		
+	}
 }

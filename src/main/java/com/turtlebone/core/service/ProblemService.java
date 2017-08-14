@@ -26,4 +26,6 @@ public interface ProblemService{
 	
 	public List<ProblemModel> selectByCondition(String username, String type, 
 			String status, String deadlineFrom, String deadlineTo, String order);
+	
+	public ProblemModel selectIdOfNextProblem(String username, String type);
 }
