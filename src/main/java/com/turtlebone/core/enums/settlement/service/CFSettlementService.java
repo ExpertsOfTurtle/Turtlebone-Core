@@ -39,6 +39,11 @@ public class CFSettlementService {
 		
 		int amount = list.size() * 2;
 		updateBalance(username, amount);
+		
+		for (ProblemModel model : list) {
+			model.setStatus("2");//已经结算
+			problemService.updateByPrimaryKey(model);
+		}
 		return true;
 	}
 	
@@ -62,6 +67,11 @@ public class CFSettlementService {
 		}
 		amount += unit * n; 
 		updateBalance(username, amount);
+		
+		for (ProblemModel model : list) {
+			model.setStatus("2");//已经结算
+			problemService.updateByPrimaryKey(model);
+		}
 		return true;
 	}
 	
@@ -85,6 +95,11 @@ public class CFSettlementService {
 		}
 		amount += unit * n; 
 		updateBalance(username, amount);
+		
+		for (ProblemModel model : list) {
+			model.setStatus("2");//已经结算
+			problemService.updateByPrimaryKey(model);
+		}
 		return true;
 	}
 	
@@ -108,6 +123,11 @@ public class CFSettlementService {
 		}
 		amount += unit * n; 
 		updateBalance(username, amount);
+		
+		for (ProblemModel model : list) {
+			model.setStatus("2");//已经结算
+			problemService.updateByPrimaryKey(model);
+		}
 		return true;
 	}
 	
