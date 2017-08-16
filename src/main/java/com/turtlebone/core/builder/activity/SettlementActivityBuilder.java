@@ -2,6 +2,7 @@ package com.turtlebone.core.builder.activity;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.turtlebone.core.controller.ChooseController;
@@ -11,7 +12,7 @@ import com.turtlebone.core.model.ActivityModel;
 import com.turtlebone.core.util.DateUtil;
 import com.turtlebone.core.util.StringUtil;
 
-@Service
+@Component
 public class SettlementActivityBuilder {
 	private static Logger logger = LoggerFactory.getLogger(SettlementActivityBuilder.class);
 	
