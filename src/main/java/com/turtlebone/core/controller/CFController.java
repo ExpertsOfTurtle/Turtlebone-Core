@@ -25,9 +25,12 @@ import org.springframework.web.servlet.ModelAndView;
 import com.turtlebone.core.bean.ChooseInfo;
 import com.turtlebone.core.bean.CompleteProblemRequest;
 import com.turtlebone.core.bean.QueryProblemRequest;
+import com.turtlebone.core.builder.activity.CFActivityBuilder;
+import com.turtlebone.core.model.ActivityModel;
 import com.turtlebone.core.model.OptionGroupModel;
 import com.turtlebone.core.model.OptionsModel;
 import com.turtlebone.core.model.ProblemModel;
+import com.turtlebone.core.service.ActivityService;
 import com.turtlebone.core.service.OptionGroupService;
 import com.turtlebone.core.service.OptionsService;
 import com.turtlebone.core.service.ProblemService;
@@ -41,6 +44,10 @@ public class CFController {
 	
 	@Autowired
 	private ProblemService problemService;
+	@Autowired
+	private ActivityService activityService;
+	@Autowired
+	private CFActivityBuilder cfActivityBuilder;
 		
 	@RequestMapping(value="/queryByDeadline", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<?> queryByDeadline(@RequestBody QueryProblemRequest request) {
@@ -58,9 +65,19 @@ public class CFController {
 			logger.warn("根本就没有可以完成的题！");
 			return ResponseEntity.ok("根本就没有可以完成的题！");
 		}
+		logger.info("即将更新problem[id={}, deadline={}]状态", 
+				problem.getId(), problem.getDeadline());
 		problem.setStatus("1");
 		problem.setProblemNo(request.getUrl());
 		problemService.updateByPrimaryKey(problem);
+		logger.info("更新完毕,即将写入日志");
+		
+		ActivityModel activity = cfActivityBuilder.buildComplete(request.getUsername(), "", 
+				request.getType(), 
+				request.getUrl(),
+				problem.getDeadline());
+		int rt = activityService.create(activity);
+		logger.info("写入日志完毕, id={}", rt);
 		return ResponseEntity.ok(problem);		
 	}
 }

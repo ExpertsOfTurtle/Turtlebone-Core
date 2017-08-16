@@ -2,6 +2,7 @@ package com.turtlebone.core.enums;
 
 public enum ActivityType {
 	CHOOSE,		//抽
+	COMPLETECF,	//完成题目
 	PUNISH,		//罚题
 	TOPUNISH,	//抽题转罚题
 	PAY,		//支付
