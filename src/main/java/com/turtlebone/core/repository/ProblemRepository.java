@@ -32,4 +32,6 @@ public interface ProblemRepository{
     List<Problem> selectByCondition(Map map);
     
     Problem selectIdOfNextProblem(Map map);
+    
+    int batchInsert(List<Problem> list);
 }

@@ -124,6 +124,17 @@ public class DateUtil {
 		SimpleDateFormat sdf = getSdf("yyyy-MM-dd");
 		return sdf.format(date);
 	}
+	public static String getNDaysLater(int n, String pattern) {
+		Calendar instance = Calendar.getInstance();
+		instance.setTime(new Date());
+		instance.add(Calendar.DATE, n);
+		Date day = instance.getTime();
+
+		SimpleDateFormat sdf = getSdf(pattern);
+		String rs = sdf.format(day);
+		
+		return rs;
+	}
 	
 	@Test
 	public void test() {

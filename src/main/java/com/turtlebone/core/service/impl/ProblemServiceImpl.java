@@ -119,4 +119,11 @@ public class ProblemServiceImpl implements ProblemService {
 		Problem problem = problemRepo.selectIdOfNextProblem(map);
 		return BeanCopyUtils.map(problem, ProblemModel.class);
 	}
+
+
+	@Override
+	public int batchInsert(List<ProblemModel> list) {
+		List<Problem> pList = BeanCopyUtils.mapList(list, Problem.class);
+		return problemRepo.batchInsert(pList);
+	}
 }

@@ -28,4 +28,6 @@ public interface ProblemService{
 			String status, String deadlineFrom, String deadlineTo, String order);
 	
 	public ProblemModel selectIdOfNextProblem(String username, String type);
+	
+	public int batchInsert(List<ProblemModel> list);
 }
