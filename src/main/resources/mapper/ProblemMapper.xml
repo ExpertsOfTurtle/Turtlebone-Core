@@ -257,13 +257,14 @@
   <insert id="batchInsert" parameterType="java.util.List">
   	insert into problems (`problem_no`,`date`,`respondent`,`status`,`type`,`deadline`)
     values 
-    <foreach collection ="list" item="p" index= "index" separator ="," open="(" close=")">
-    	#{p.problemNo,jdbcType=VARCHAR}, 
+    <foreach collection ="list" item="p" index= "index" separator ="," >
+    	(#{p.problemNo,jdbcType=VARCHAR}, 
     	#{p.date,jdbcType=VARCHAR},
     	#{p.respondent,jdbcType=VARCHAR},
     	#{p.status,jdbcType=VARCHAR},
     	#{p.type,jdbcType=VARCHAR},
     	#{p.deadline,jdbcType=VARCHAR}
+    	)
     </foreach>      
   </insert>
  </mapper>
