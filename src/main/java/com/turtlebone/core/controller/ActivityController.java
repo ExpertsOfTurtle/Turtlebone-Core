@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
+import com.turtlebone.core.bean.DreamActivityRequest;
 import com.turtlebone.core.bean.SudokuActivity;
+import com.turtlebone.core.builder.activity.DreamActivityBuilder;
 import com.turtlebone.core.builder.activity.SudokuActivityBuilder;
 import com.turtlebone.core.enums.settlement.service.CFSettlementService;
 import com.turtlebone.core.enums.sudoku.SudokuLevel;
@@ -37,6 +39,8 @@ public class ActivityController {
 	private ActivityService activityService;
 	@Autowired
 	private SudokuActivityBuilder sudokuActivityBuilder;
+	@Autowired
+	private DreamActivityBuilder dreamActivityBuilder;
 	
 	
 	@RequestMapping(value="/sudoku")
@@ -52,5 +56,16 @@ public class ActivityController {
 		ActivityModel activity = sudokuActivityBuilder.build(username, datetime, usetime, level, gameId, rank, problemId);
 		activityService.create(activity);
 		return ResponseEntity.ok(activity);
+	}
+	
+	@RequestMapping(value="/dream")
+	public @ResponseBody ResponseEntity<?> addDream(@RequestBody DreamActivityRequest request) {
+		logger.debug("request:{}", JSON.toJSONString(request));
+		String username = request.getUsername();
+		String datetime = request.getDatetime();
+		ActivityModel activity = dreamActivityBuilder.build(username, datetime, request.getContent());
+		logger.debug("activity:{}", JSON.toJSONString(activity));
+		activityService.create(activity);
+		return ResponseEntity.ok(activity);		
 	}
 }

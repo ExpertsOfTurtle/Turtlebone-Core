@@ -10,4 +10,5 @@ public enum ActivityType {
 	ADDGROUP,	//添加选项组
 	SUDOKU,		//数独
 	SETTLEMENT,	//结算
+	DREAM,		//发梦
 }
