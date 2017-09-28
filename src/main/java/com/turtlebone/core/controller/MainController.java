@@ -42,4 +42,20 @@ public class MainController {
 		return "index";
 	}
 
+	@RequestMapping(value="/turtlebone")
+	public String turtlebone(Map<String, Object> model) {
+		logger.debug("go to turtlebone.vm");
+		return "turtlebone";
+	}
+	
+	@RequestMapping(value="/main/dream/{page}")
+	public String dreamPage(Map<String, Object> model, @PathVariable("page") String page) {
+		logger.debug("go to {}.vm", page);
+		return "dream/" + page;
+	}
+	@RequestMapping(value="/main/decide/{page}")
+	public String decidePage(Map<String, Object> model, @PathVariable("page") String page) {
+		logger.debug("go to {}.vm", page);
+		return "decide/" + page;
+	}
 }

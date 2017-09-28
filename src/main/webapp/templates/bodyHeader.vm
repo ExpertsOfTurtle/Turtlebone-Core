@@ -1,0 +1,17 @@
+<div data-role="header" data-position="fixed" data-theme="a">
+			<h1>External header Page A</h1>
+			<a href="#outside" data-icon="bars" data-iconpos="notext">Menu</a>
+			<div data-role="navbar">
+				<ul>
+					<li>
+						<a href="turtlebone.html">turtlebone.html</a>
+					</li>
+					<li>
+						<a href="create.html">create.html</a>
+					</li>
+					<li>
+						<a href="page-c.html">Page C</a>
+					</li>
+				</ul>
+			</div>
+		</div>

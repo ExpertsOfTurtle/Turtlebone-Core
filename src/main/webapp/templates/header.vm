@@ -1,0 +1,5 @@
+<link rel="shortcut icon" href="../favicon.ico">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/core/statics/jqueryMobile/css/themes/default/jquery.mobile-1.4.5.min.css">
+<script src="/core/statics/jqueryMobile/js/jquery.js"></script>
+<script src="/core/statics/jqueryMobile/js/jquery.mobile-1.4.5.min.js"></script>

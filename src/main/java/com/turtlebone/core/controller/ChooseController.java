@@ -116,7 +116,7 @@ public class ChooseController {
 		List<ChooseInfo> result = selectAllOptions();
 		
 		model.put("chooseList", result);
-		return "choose";
+		return "decide/list";
 	}	
 	
 	private List<ChooseInfo> selectAllOptions() {
