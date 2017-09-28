@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.alibaba.fastjson.JSON;
 import com.turtlebone.core.bean.DreamActivityRequest;
+import com.turtlebone.core.bean.QueryActivityRequest;
 import com.turtlebone.core.bean.SudokuActivity;
 import com.turtlebone.core.builder.activity.DreamActivityBuilder;
 import com.turtlebone.core.builder.activity.SudokuActivityBuilder;
@@ -31,19 +32,26 @@ import com.turtlebone.core.service.ActivityService;
 
 @Controller
 @EnableAutoConfiguration
-@RequestMapping(value="activity")
+@RequestMapping(value = "activity")
 public class ActivityController {
 	private static Logger logger = LoggerFactory.getLogger(ActivityController.class);
-	
+
 	@Autowired
 	private ActivityService activityService;
 	@Autowired
 	private SudokuActivityBuilder sudokuActivityBuilder;
 	@Autowired
 	private DreamActivityBuilder dreamActivityBuilder;
-	
-	
-	@RequestMapping(value="/sudoku")
+
+	@RequestMapping(value = "/query")
+	public @ResponseBody ResponseEntity<?> queryActivity(@RequestBody QueryActivityRequest request) {
+		logger.debug("request:{}", JSON.toJSONString(request));
+		List<ActivityModel> list = activityService.selectByCondition(request.getUsername(), request.getType(),
+				request.getPageSize(), request.getOffset());
+		return ResponseEntity.ok(list);
+	}
+
+	@RequestMapping(value = "/sudoku")
 	public @ResponseBody ResponseEntity<?> addSudokuActivity(@RequestBody SudokuActivity sudokuActivity) {
 		logger.debug("request:{}", JSON.toJSONString(sudokuActivity));
 		String username = sudokuActivity.getUsername();
@@ -53,12 +61,13 @@ public class ActivityController {
 		Integer gameId = sudokuActivity.getGameId();
 		Integer rank = sudokuActivity.getRank();
 		Integer problemId = sudokuActivity.getProblemId();
-		ActivityModel activity = sudokuActivityBuilder.build(username, datetime, usetime, level, gameId, rank, problemId);
+		ActivityModel activity = sudokuActivityBuilder.build(username, datetime, usetime, level, gameId, rank,
+				problemId);
 		activityService.create(activity);
 		return ResponseEntity.ok(activity);
 	}
-	
-	@RequestMapping(value="/dream")
+
+	@RequestMapping(value = "/dream")
 	public @ResponseBody ResponseEntity<?> addDream(@RequestBody DreamActivityRequest request) {
 		logger.debug("request:{}", JSON.toJSONString(request));
 		String username = request.getUsername();
@@ -66,6 +75,6 @@ public class ActivityController {
 		ActivityModel activity = dreamActivityBuilder.build(username, datetime, request.getContent());
 		logger.debug("activity:{}", JSON.toJSONString(activity));
 		activityService.create(activity);
-		return ResponseEntity.ok(activity);		
+		return ResponseEntity.ok(activity);
 	}
 }

@@ -336,6 +336,9 @@
      	and `type` = #{type,jdbcType=VARCHAR}
      </if>
      order by idactivity desc
+     <if test="offset >= 0 and pageSize > 0">
+     	limit ${offset}, ${pageSize}
+     </if>
   </select>
  </mapper>
   

@@ -21,5 +21,5 @@ public interface ActivityService{
 	
 	public int selectCount(ActivityModel activityModel);
 	
-	public List<ActivityModel> selectByCondition(String username, String type);
+	public List<ActivityModel> selectByCondition(String username, String type, Integer size, Integer offset);
 }

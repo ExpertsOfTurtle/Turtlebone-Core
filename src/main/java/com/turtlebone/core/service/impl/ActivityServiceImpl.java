@@ -14,6 +14,7 @@ import com.turtlebone.core.repository.ActivityRepository;
 import com.turtlebone.core.model.ActivityModel;
 import com.turtlebone.core.service.ActivityService;
 import com.turtlebone.core.util.BeanCopyUtils;
+import com.turtlebone.core.util.StringUtil;
 
 @Service
 public class ActivityServiceImpl implements ActivityService {
@@ -100,13 +101,20 @@ public class ActivityServiceImpl implements ActivityService {
 
 
 	@Override
-	public List<ActivityModel> selectByCondition(String username, String type) {
-		Map<String, String> map = new HashMap<>();
-		if (username != null) {
+	public List<ActivityModel> selectByCondition(String username, String type, Integer pageSize, Integer offset) {
+		Map<String, Object> map = new HashMap<>();
+		if (!StringUtil.isEmpty(username)) {
 			map.put("username", username);
 		}
-		if (type != null) {
+		if (!StringUtil.isEmpty(type)) {
 			map.put("type", type);
+		}
+		if (pageSize != null && offset != null) {
+			map.put("offset", offset);
+			map.put("pageSize", pageSize);
+		} else {
+			map.put("offset", 0);
+			map.put("pageSize", 0);
 		}
 		List<Activity> list = activityRepo.selectByCondition(map);
 		return BeanCopyUtils.mapList(list, ActivityModel.class);
