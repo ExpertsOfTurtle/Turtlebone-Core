@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
@@ -28,7 +29,9 @@ import com.turtlebone.core.builder.activity.SudokuActivityBuilder;
 import com.turtlebone.core.enums.settlement.service.CFSettlementService;
 import com.turtlebone.core.enums.sudoku.SudokuLevel;
 import com.turtlebone.core.model.ActivityModel;
+import com.turtlebone.core.model.UserModel;
 import com.turtlebone.core.service.ActivityService;
+import com.turtlebone.core.service.UserService;
 
 @Controller
 @EnableAutoConfiguration
@@ -38,6 +41,8 @@ public class ActivityController {
 
 	@Autowired
 	private ActivityService activityService;
+	@Autowired
+	private UserService userService;
 	@Autowired
 	private SudokuActivityBuilder sudokuActivityBuilder;
 	@Autowired
@@ -70,6 +75,11 @@ public class ActivityController {
 	@RequestMapping(value = "/dream")
 	public @ResponseBody ResponseEntity<?> addDream(@RequestBody DreamActivityRequest request) {
 		logger.debug("request:{}", JSON.toJSONString(request));
+		
+		UserModel user = userService.selectByUsername(request.getUsername());
+		if (user == null) {
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("no such username!");
+		}
 		String username = request.getUsername();
 		String datetime = request.getDatetime();
 		ActivityModel activity = dreamActivityBuilder.build(username, datetime, request.getContent());
