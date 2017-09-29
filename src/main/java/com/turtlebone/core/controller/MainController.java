@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @EnableAutoConfiguration
+@RequestMapping(value="/main")
 public class MainController {
 	private static Logger logger = LoggerFactory.getLogger(MainController.class);
 	
@@ -35,7 +36,7 @@ public class MainController {
 	/*
 	 * 进入主页
 	 * */
-	@RequestMapping(value="/main")
+	@RequestMapping(value="/")
 	public String getMainPage(Map<String, Object> model) {
 		logger.debug("go to index.vm");
 		model.put("wf", "DFSDFS");
@@ -48,12 +49,12 @@ public class MainController {
 		return "turtlebone";
 	}
 	
-	@RequestMapping(value="/main/dream/{page}")
+	@RequestMapping(value="/dream/{page}")
 	public String dreamPage(Map<String, Object> model, @PathVariable("page") String page) {
 		logger.debug("go to {}.vm", page);
 		return "dream/" + page;
 	}
-	@RequestMapping(value="/main/decide/{page}")
+	@RequestMapping(value="/decide/{page}")
 	public String decidePage(Map<String, Object> model, @PathVariable("page") String page) {
 		logger.debug("go to {}.vm", page);
 		return "decide/" + page;

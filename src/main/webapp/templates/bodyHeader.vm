@@ -1,16 +1,16 @@
 <div data-role="header" data-position="fixed" data-theme="a">
-			<h1>External header Page A</h1>
+			<h1>${headerTitle}</h1>
 			<a href="#outside" data-icon="bars" data-iconpos="notext">Menu</a>
 			<div data-role="navbar">
 				<ul>
 					<li>
-						<a href="turtlebone.html">turtlebone.html</a>
+						<a href="/core/choose/selectpage">List Selction</a>
 					</li>
 					<li>
-						<a href="create.html">create.html</a>
+						<a href="/core/main/dream/input">createDream</a>
 					</li>
 					<li>
-						<a href="page-c.html">Page C</a>
+						<a href="/core/dream/list">DreamList</a>
 					</li>
 				</ul>
 			</div>

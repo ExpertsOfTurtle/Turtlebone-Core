@@ -3,3 +3,11 @@
 <link rel="stylesheet" href="/core/statics/jqueryMobile/css/themes/default/jquery.mobile-1.4.5.min.css">
 <script src="/core/statics/jqueryMobile/js/jquery.js"></script>
 <script src="/core/statics/jqueryMobile/js/jquery.mobile-1.4.5.min.js"></script>
+<style>
+	div[data-role='page']>div {
+		padding: 10px;
+	}
+</style>
+
+
+<script type="text/javascript" src="/core/statics/js/dream/input.js"></script>
