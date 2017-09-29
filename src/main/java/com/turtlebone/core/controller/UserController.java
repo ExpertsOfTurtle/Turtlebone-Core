@@ -27,6 +27,7 @@ import com.turtlebone.core.service.UserService;
 
 @Controller
 @EnableAutoConfiguration
+@RequestMapping(value = "user")
 public class UserController {
 	private static Logger logger = LoggerFactory.getLogger(UserController.class);
 	

@@ -12,7 +12,7 @@
 					<a href="/core/main/dream/input">createDream</a>
 				</li>
 				<li>
-					<a href="/core/dream/list">DreamList</a>
+					<a href="/core/main/dream/list">DreamList.</a>
 				</li>
 			</ul>
 		</div>

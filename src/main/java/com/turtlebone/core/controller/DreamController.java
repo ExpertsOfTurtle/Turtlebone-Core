@@ -27,6 +27,7 @@ import com.alibaba.fastjson.JSON;
 import com.turtlebone.core.bean.ChooseInfo;
 import com.turtlebone.core.bean.CreateDreamRequest;
 import com.turtlebone.core.bean.DreamActivityRequest;
+import com.turtlebone.core.bean.QueryActivityRequest;
 import com.turtlebone.core.builder.activity.DreamActivityBuilder;
 import com.turtlebone.core.builder.activity.SudokuActivityBuilder;
 import com.turtlebone.core.enums.ActivityType;
@@ -69,11 +70,12 @@ public class DreamController {
 		return ResponseEntity.ok(activity);
 	}
 
-	@RequestMapping(value = "/list")
-	public String queryDream(Map<String, Object> model) {
-		List<ActivityModel> list = activityService.selectByCondition(null, ActivityType.DREAM.name(), null, null);
+	@RequestMapping(value = "/query")
+	public String queryDream(Map<String, Object> model, @RequestBody QueryActivityRequest request) {
+		List<ActivityModel> list = activityService.selectByCondition(request.getUsername(), ActivityType.DREAM.name(),
+				request.getPageSize(), request.getOffset());
 		model.put("list", list);
-		return "dream/list";
+		return "dream/ajax/list";
 	}
 
 }

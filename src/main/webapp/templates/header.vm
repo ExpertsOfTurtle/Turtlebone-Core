@@ -11,3 +11,9 @@
 
 
 <script type="text/javascript" src="/core/statics/js/dream/input.js"></script>
+
+<script>
+	$(document).delegate("#listDreamPage", "pageinit", function(){
+        loadNext();
+    });
+</script>

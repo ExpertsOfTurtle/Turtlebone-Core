@@ -11,21 +11,12 @@
 			
 			<div role="main" class="ui-content">
 				<div data-demo-html="true">
-					<ul data-role="listview" data-inset="true">
+					<ul data-role="listview" data-inset="true" id="listDreamUl">
 						<li data-role="list-divider"><span class="ui-li-count">0</span></li>
-						#foreach ($module in $list)		
-						<li>
-							<a href="#">
-								<h2>${module.datetime}</h2>							
-								<p>${module.username}</p>
-								<p>${module.result}</p>
-							</a>
-						</li>
-						#end
 					</ul>
 					<ul data-role="listview" data-inset="true">
 						<li>
-							<a href="#">Load more</a>
+							<a href="javascript:loadNext();">Load more</a>
 						</li>
 					</ul>
 				</div>
