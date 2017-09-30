@@ -5,28 +5,25 @@
 	</head>
 	<body>
 		
-		<div data-role="page" id="dreamPage">
-			<div data-demo-html="true">
-				<ul data-role="listview" data-inset="true">
-					<li data-role="list-divider"><span class="ui-li-count">0</span></li>
-					#foreach ($module in $chooseList)		
-					<li>
-						<a href="#">
-							<h2>${module.group.groupname}</h2>
-							#foreach ($opt in $module.options)
-							<p>${opt.optionname} (${opt.probability})</p>
-							#end
-						</a>
-					</li>
-					#end
-				</ul>
-			</div><!--/demo-html -->
+		<div data-role="page" id="decideListPage">
+			#set($headerTitle="List Decide")
+			#parse("bodyHeader.vm")
+			
+			<div role="main" class="ui-content">
+				<div data-demo-html="true">
+					<ul data-role="listview" data-inset="true" id="listDecideUL">
+						
+					</ul>
+				</div>
+			</div>
+						
+			<!-- Left Menu -->
+			#parse("leftMenu.vm")
+	
+			#parse("bodyFooter.vm")
 		</div>
 		<!-- /page -->
 		
-		<div data-role="page" id="hidenPage">
-			
-		</div>
 
 	</body>
 </html>

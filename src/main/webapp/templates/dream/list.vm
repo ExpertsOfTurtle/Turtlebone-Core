@@ -21,6 +21,11 @@
 					</ul>
 				</div>
 			</div>
+			
+			<!-- Left Menu -->
+			#parse("leftMenu.vm")
+	
+			#parse("bodyFooter.vm")
 		</div>
 		<!-- /page -->
 		

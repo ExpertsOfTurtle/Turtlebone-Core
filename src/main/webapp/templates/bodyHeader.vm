@@ -4,7 +4,7 @@
 			<div data-role="navbar">
 				<ul>
 					<li>
-						<a href="/core/choose/selectpage">List Selction</a>
+						<a href="/core/main/decide/list">List Selction</a>
 					</li>
 					<li>
 						<a href="/core/main/dream/input">createDream</a>

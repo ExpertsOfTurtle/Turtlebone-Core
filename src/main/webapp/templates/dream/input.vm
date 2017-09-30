@@ -33,6 +33,11 @@
 					<input type="button" data-inline="true" value="Submit" onclick="createDream();">
 				</div>
 			</div>
+			
+			<!-- Left Menu -->
+			#parse("leftMenu.vm")
+	
+			#parse("bodyFooter.vm")
 		</div>
 		<!-- /page -->
 		

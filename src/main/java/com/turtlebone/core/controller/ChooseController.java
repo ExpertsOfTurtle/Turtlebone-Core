@@ -111,12 +111,12 @@ public class ChooseController {
 		return ResponseEntity.ok(result);
 	}
 	@RequestMapping(value="/selectpage")
-	public String getMainPage(Map<String, Object> model) {
-		logger.debug("choose.vm");
+	public String selectpage(Map<String, Object> model) {
+		logger.debug("selectpage");
 		List<ChooseInfo> result = selectAllOptions();
 		
 		model.put("chooseList", result);
-		return "decide/list";
+		return "decide/ajax/list";
 	}	
 	
 	private List<ChooseInfo> selectAllOptions() {

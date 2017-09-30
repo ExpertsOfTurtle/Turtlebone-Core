@@ -1,6 +1,6 @@
 var DREAM_PAGE = {
 	pageOffset : 0,
-	pageSize : 2
+	pageSize : 10
 }
 function createDream() {
 	var content = $("#content").val();

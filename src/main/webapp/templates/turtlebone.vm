@@ -14,15 +14,17 @@
 			<!-- /header -->
 		
 				Nothing here
+				
+			<!-- Left Menu -->
+			#parse("leftMenu.vm")
+	
+			#parse("bodyFooter.vm")
 		</div>
 		
 		<!-- /page -->
 
 		
-		<!-- Left Menu -->
-		#parse("leftMenu.vm")
-
-		#parse("bodyFooter.vm")
+		
 	</body>
 </html>
 				
