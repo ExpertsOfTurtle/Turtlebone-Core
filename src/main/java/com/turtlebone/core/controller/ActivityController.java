@@ -55,7 +55,14 @@ public class ActivityController {
 				request.getPageSize(), request.getOffset());
 		return ResponseEntity.ok(list);
 	}
-
+	
+	@RequestMapping(value = "/detail/{id}")
+	public String queryDetail(Map<String, Object> model,  @PathVariable("id") Integer id) {
+		ActivityModel detail = activityService.findByPrimaryKey(id);
+		model.put("detail", detail);
+		return "activity/ajax/detail";
+	}
+	
 	@RequestMapping(value = "/sudoku")
 	public @ResponseBody ResponseEntity<?> addSudokuActivity(@RequestBody SudokuActivity sudokuActivity) {
 		logger.debug("request:{}", JSON.toJSONString(sudokuActivity));

@@ -77,5 +77,4 @@ public class DreamController {
 		model.put("list", list);
 		return "dream/ajax/list";
 	}
-
 }

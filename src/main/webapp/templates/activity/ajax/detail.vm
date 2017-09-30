@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		#parse("header.vm")		
+	</head>
+	<body>
+		
+		<div data-role="page" data-dialog="true">
+			<div data-role="header" data-theme="b">
+				<h1>Dream by ${detail.username}</h1>
+			</div>
+			<div role="main" class="ui-content">
+				<h2>${detail.datetime}</h2>							
+				<p>${detail.result}</p>
+			</div>
+		</div>
+		<!-- /page -->
+		
+
+	</body>
+</html>
