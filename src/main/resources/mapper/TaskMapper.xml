@@ -7,6 +7,7 @@
     <result column="owner" property="owner" jdbcType="VARCHAR" />
     <result column="deadline" property="deadline" jdbcType="VARCHAR" />
     <result column="punishment_id" property="punishmentId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
 
@@ -16,6 +17,7 @@
    `owner`,
    `deadline`,
    `punishment_id`,
+   `status`,
    `content`
  </sql>
   
@@ -38,6 +40,7 @@
      `owner`,
      `deadline`,
      `punishment_id`,
+     `status`,
      `content`
     )
     values (
@@ -46,6 +49,7 @@
      #{owner,jdbcType=VARCHAR},
      #{deadline,jdbcType=VARCHAR},
      #{punishmentId,jdbcType=INTEGER},
+     #{status,jdbcType=INTEGER},
      #{content,jdbcType=LONGVARCHAR}
  )
   </insert>
@@ -70,6 +74,9 @@
       <if test="punishmentId != null" >
         `punishment_id`,
       </if>
+      <if test="status != null" >
+        `status`,
+      </if>
       <if test="content != null" >
         `content`,
       </if>
@@ -89,6 +96,9 @@
       </if>
       <if test="punishmentId != null" >
         #{punishmentId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
       </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
@@ -111,6 +121,9 @@
        <if test="punishmentId != null" >
         `punishment_id`= #{punishmentId,jdbcType=INTEGER},
        </if>
+       <if test="status != null" >
+        `status`= #{status,jdbcType=INTEGER},
+       </if>
            <if test="content != null" >
         `content`= #{content,jdbcType=LONGVARCHAR},
        </if>
@@ -125,7 +138,8 @@
        `creator` = #{creator,jdbcType=VARCHAR},
        `owner` = #{owner,jdbcType=VARCHAR},
        `deadline` = #{deadline,jdbcType=VARCHAR},
-       `punishment_id` = #{punishmentId,jdbcType=INTEGER}
+       `punishment_id` = #{punishmentId,jdbcType=INTEGER},
+       `status` = #{status,jdbcType=INTEGER}
      where id = #{id,jdbcType=INTEGER}
   </update>
   
@@ -148,6 +162,9 @@
       </if>
             <if test="punishmentId != null" >
         and `punishment_id` = #{punishmentId,jdbcType=INTEGER}
+      </if>
+            <if test="status != null" >
+        and `status` = #{status,jdbcType=INTEGER}
       </if>
             <if test="content != null" >
         and `content` = #{content,jdbcType=LONGVARCHAR}
@@ -174,6 +191,9 @@
         <if test="task.punishmentId != null" >
       and `punishment_id` = #{task.punishmentId,jdbcType=INTEGER}
     </if>
+        <if test="task.status != null" >
+      and `status` = #{task.status,jdbcType=INTEGER}
+    </if>
         <if test="task.content != null" >
       and `content` = #{task.content,jdbcType=LONGVARCHAR}
     </if>
@@ -186,6 +206,7 @@
    || order.property == 'owner'
    || order.property == 'deadline'
    || order.property == 'punishment_id'
+   || order.property == 'status'
    || order.property == 'content'
         " >
         		${order.property} ${order.direction}

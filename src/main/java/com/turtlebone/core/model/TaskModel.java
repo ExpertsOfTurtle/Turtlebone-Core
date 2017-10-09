@@ -12,6 +12,7 @@ public class TaskModel implements Serializable{
 	private String owner;
 	private String deadline;
 	private Integer punishmentId;
+	private Integer status;
 	private String content;
 		
 }
