@@ -12,7 +12,7 @@
 
 <script type="text/javascript" src="/core/statics/js/dream/input.js"></script>
 <script type="text/javascript" src="/core/statics/js/decide/input.js"></script>
-
+<script type="text/javascript" src="/core/statics/js/contract/contract.js"></script>
 <script>
 	$(document).delegate("#listDreamPage", "pageinit", function(){
 		DREAM_PAGE.pageOffset=0;
@@ -20,5 +20,8 @@
     });
     $(document).delegate("#decideListPage", "pageinit", function(){
 		loadAllDecideList();
+    });
+    $(document).delegate("#contractListPage", "pageinit", function(){
+		loadAllContractList();
     });
 </script>
