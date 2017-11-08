@@ -7,9 +7,9 @@
     </appender>
     
     <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>/apps/logs/turtlebone-core/application.log</file>
+        <file>/apps/logs/turtlebone-auth/application.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>/apps/logs/turtlebone-core/application.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
+            <fileNamePattern>/apps/logs/turtlebone-auth/application.%d{yyyy-MM-dd}.log.zip</fileNamePattern>
         </rollingPolicy>
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>%-20(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{80} - %msg%n</pattern>
@@ -32,7 +32,7 @@
     <logger name="org.neo4j" level="ERROR"/>
     <logger name="ma.glasnost.orika" level="ERROR"/>
 
-    <logger name="com.turtle" level="DEBUG"/>
+    <logger name="com.turtlebone" level="DEBUG"/>
 
     <root level="DEBUG">
        <appender-ref ref="stdout"/>

@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.aliyuncs.http.HttpResponse;
 
 @Controller
 @EnableAutoConfiguration
@@ -58,5 +62,13 @@ public class MainController {
 	public String decidePage(Map<String, Object> model, @PathVariable("page") String page) {
 		logger.debug("go to {}.vm", page);
 		return "decide/" + page;
+	}
+	@RequestMapping(value="/contract/{page}")
+	public String contractPage(Map<String, Object> model, @PathVariable("page") String page,
+			HttpServletResponse resp) {
+		logger.debug("go to {}.vm", page);
+		resp.setHeader("Access-Control-Allow-Origin", "*");
+		resp.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+		return "contract/" + page;
 	}
 }
