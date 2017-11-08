@@ -79,19 +79,4 @@ public class ActivityController {
 		return ResponseEntity.ok(activity);
 	}
 
-	@RequestMapping(value = "/dream")
-	public @ResponseBody ResponseEntity<?> addDream(@RequestBody DreamActivityRequest request) {
-		logger.debug("request:{}", JSON.toJSONString(request));
-		
-		UserModel user = userService.selectByUsername(request.getUsername());
-		if (user == null) {
-			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("no such username!");
-		}
-		String username = request.getUsername();
-		String datetime = request.getDatetime();
-		ActivityModel activity = dreamActivityBuilder.build(username, datetime, request.getContent());
-		logger.debug("activity:{}", JSON.toJSONString(activity));
-		activityService.create(activity);
-		return ResponseEntity.ok(activity);
-	}
 }
