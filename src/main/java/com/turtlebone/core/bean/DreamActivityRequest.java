@@ -9,4 +9,5 @@ public class DreamActivityRequest {
 	private String username;
 	private String datetime;
 	private String content;
+	private String dreampic;
 }

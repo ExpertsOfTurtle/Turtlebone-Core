@@ -1,9 +1,11 @@
+mypath: 
+    imgpath: /data/images/
 spring:
   profiles: default
   datasource:
     type: org.apache.commons.dbcp2.BasicDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://www.turtlebone.top:3306/turtle?allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:3306/turtle?allowMultiQueries=true
     username: mysql
     password: mysql
     initialSize: 10
@@ -38,7 +40,7 @@ spring:
   datasource:
     type: org.apache.commons.dbcp2.BasicDataSource
     driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://www.turtlebone.top:3306/turtle?allowMultiQueries=true
+    url: jdbc:mysql://127.0.0.1:3306/turtle?allowMultiQueries=true
     username: mysql
     password: mysql
     initialSize: 10
@@ -68,3 +70,4 @@ server:
 mybatis:
   mapperLocations: classpath:mapper/*.xml
 redis.expireTime: 3600
+
