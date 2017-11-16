@@ -1,5 +1,3 @@
-mypath: 
-    imgpath: /data/images/
 spring:
   profiles: default
   datasource:
@@ -31,6 +29,8 @@ spring:
 server:
   port: 12003
   contextPath: /core/
+mypath: 
+    imgpath: /data/images/
 mybatis:
   mapperLocations: classpath:mapper/*.xml
 redis.expireTime: 60
@@ -67,6 +67,8 @@ spring:
 server:
   port: 12003
   contextPath: /core/
+mypath: 
+    imgpath: /data/images/
 mybatis:
   mapperLocations: classpath:mapper/*.xml
 redis.expireTime: 3600

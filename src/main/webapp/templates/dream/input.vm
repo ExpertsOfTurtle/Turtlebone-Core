@@ -38,8 +38,10 @@
 				
 				
 				<div data-demo-html="true">
+					<!--
 					<input type="button" data-inline="true" value="Upload" onclick="uploadPic();">
-					<input type="button" data-inline="true" value="Submit" onclick="createDream();">
+					-->
+					<input type="button" data-inline="true" value="Submit" onclick="onSubmit();">
 				</div>
 			</div>
 			

@@ -2,6 +2,14 @@ var DREAM_PAGE = {
 	pageOffset : 0,
 	pageSize : 10
 }
+function onSubmit() {
+	var rs = uploadPic();
+	$.when(rs).done(function(data){
+		if (data.flag != false) {
+			createDream();
+		}
+	});
+}
 function createDream() {
 	var content = $("#content").val();
 	var dreamer = $("#dreamer").val();
@@ -32,6 +40,7 @@ function createDream() {
 
 		}
 	});
+	return rs;
 }
 function loadNext() {
 	var param = {
@@ -61,6 +70,11 @@ function loadNext() {
 	});
 }
 function uploadPic() {
+	var filePath = $("#img").val();
+	IMG_PATH = "";
+	if (filePath == null || filePath == "") {
+		return null;
+	}
 	var rs = $.ajax({
 		type : "POST",
 		url : "/core/dream/uploadImg",
@@ -80,4 +94,5 @@ function uploadPic() {
 			console.log("fail");
 		}
 	});
+	return rs;
 }

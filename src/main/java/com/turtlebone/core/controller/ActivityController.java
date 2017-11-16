@@ -4,10 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletRequest;
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -57,9 +61,15 @@ public class ActivityController {
 	}
 	
 	@RequestMapping(value = "/detail/{id}")
-	public String queryDetail(Map<String, Object> model,  @PathVariable("id") Integer id) {
+	public String queryDetail(ServletRequest request, Map<String, Object> model,  @PathVariable("id") Integer id) {
 		ActivityModel detail = activityService.findByPrimaryKey(id);
 		model.put("detail", detail);
+		
+		HttpServletRequest req = (HttpServletRequest) request;
+		String serverName = req.getServerName();
+		int port = req.getServerPort();
+		String serverPath = String.format("http://%s", serverName);
+		model.put("serverPath", serverPath);
 		return "activity/ajax/detail";
 	}
 	
