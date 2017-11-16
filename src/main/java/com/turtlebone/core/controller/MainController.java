@@ -55,12 +55,12 @@ public class MainController {
 	
 	@RequestMapping(value="/dream/{page}")
 	public String dreamPage(Map<String, Object> model, @PathVariable("page") String page) {
-		logger.debug("go to {}.vm", page);
+		logger.debug("go to /dream/{}.vm", page);
 		return "dream/" + page;
 	}
 	@RequestMapping(value="/decide/{page}")
 	public String decidePage(Map<String, Object> model, @PathVariable("page") String page) {
-		logger.debug("go to {}.vm", page);
+		logger.debug("go to /decide/{}.vm", page);
 		return "decide/" + page;
 	}
 	@RequestMapping(value="/contract/{page}")

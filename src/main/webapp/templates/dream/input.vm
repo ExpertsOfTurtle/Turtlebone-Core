@@ -30,6 +30,15 @@
 				</div>
 				
 				<div data-demo-html="true">
+					 <label for="text-basic">Picture:</label>
+					 <form id="fileForm">
+					 	<input type="file" name="img" id="img" value="">
+					 </form>
+				</div>
+				
+				
+				<div data-demo-html="true">
+					<input type="button" data-inline="true" value="Upload" onclick="uploadPic();">
 					<input type="button" data-inline="true" value="Submit" onclick="createDream();">
 				</div>
 			</div>

@@ -11,40 +11,41 @@ function createDream() {
 		return;
 	}
 	var param = {
-		"content":content,
-		"username":dreamer,
-		"datetime":date
+		"content" : content,
+		"username" : dreamer,
+		"datetime" : date,
+		"dreampic" : IMG_PATH
 	};
 	var rs = $.ajax({
-		type:"POST",
-		url:"/core/dream/create",
+		type : "POST",
+		url : "/core/dream/create",
 		data : JSON.stringify(param),
-		contentType:"application/json; charset=utf-8",
+		contentType : "application/json; charset=utf-8",
 		dataType : "text",
-		success : function (result) {
+		success : function(result) {
 			alert("Success");
 			$("#content").val("");
 			$("#dreamer").val("");
 			$("#dreamdate").val("");
 		},
 		error : function() {
-			
+
 		}
 	});
 }
 function loadNext() {
 	var param = {
-		"type":"",
-		"pageSize":DREAM_PAGE.pageSize,
-		"offset":DREAM_PAGE.pageOffset
+		"type" : "",
+		"pageSize" : DREAM_PAGE.pageSize,
+		"offset" : DREAM_PAGE.pageOffset
 	}
 	var rs = $.ajax({
-		type:"POST",
-		url:"/core/dream/query",
+		type : "POST",
+		url : "/core/dream/query",
 		data : JSON.stringify(param),
-		contentType:"application/json; charset=utf-8",
+		contentType : "application/json; charset=utf-8",
 		dataType : "text",
-		success : function (result) {
+		success : function(result) {
 			wf = result;
 			if (result != null && result.length > 0) {
 				$("#listDreamUl").append(result);
@@ -55,9 +56,28 @@ function loadNext() {
 			}
 		},
 		error : function() {
-			
+
 		}
 	});
-	
-	
+}
+function uploadPic() {
+	var rs = $.ajax({
+		type : "POST",
+		url : "/core/dream/uploadImg",
+		data : new FormData($('#fileForm')[0]),
+		contentType : false,
+		processData : false,
+		dataType : "json",
+		beforeSend: function(){
+            console.log("sending...");
+        },
+        success : function(result) {
+			console.log("done");
+			console.log(result);
+			IMG_PATH = result.resultStr;
+		},
+		error : function() {
+			console.log("fail");
+		}
+	});
 }
