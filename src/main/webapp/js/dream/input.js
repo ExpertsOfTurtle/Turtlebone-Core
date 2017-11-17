@@ -3,11 +3,11 @@ var DREAM_PAGE = {
 	pageSize : 10
 }
 function onSubmit() {
-	$("#dreamDebug").append("onSubmit<br>");
+	$("#dreamDebug").html("onSubmit<br>");
 	var rs = uploadPic();
 	$.when(rs).done(function(data){
 		$("#dreamDebug").append("uploadPic done<br>");
-		if (data.flag == undefined || data.flag == null || data.flag == true) {
+		if (data == null || data.flag == undefined || data.flag == null || data.flag == true) {
 			createDream();
 		}
 	});
