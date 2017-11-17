@@ -6,6 +6,9 @@
 					<a href="#" data-rel="close">Close</a>
 				</li>
 				<li>
+					<a href="/core/main/login">Login</a>
+				</li>
+				<li>
 					<a href="/core/main/decide/list">List Selction</a>
 				</li>
 				<li>
@@ -13,6 +16,9 @@
 				</li>
 				<li>
 					<a href="/core/main/dream/list">DreamList.</a>
+				</li>
+				<li>
+					<a href="/core/main/contract/list">Contract list.</a>
 				</li>
 			</ul>
 		</div>

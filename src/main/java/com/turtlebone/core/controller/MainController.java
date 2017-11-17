@@ -53,6 +53,12 @@ public class MainController {
 		return "turtlebone";
 	}
 	
+	@RequestMapping(value="/login")
+	public String login(Map<String, Object> model) {
+		logger.debug("go to login.vm");
+		return "login/login";
+	}
+	
 	@RequestMapping(value="/dream/{page}")
 	public String dreamPage(Map<String, Object> model, @PathVariable("page") String page) {
 		logger.debug("go to /dream/{}.vm", page);
