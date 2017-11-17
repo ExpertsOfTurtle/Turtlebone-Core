@@ -12,6 +12,11 @@ spring:
     maxWait: 60000
     testWhileIdle: true
     validationQuery: select 'x'
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
   redis:
     database: 0
     hostName: 127.0.0.1
@@ -49,6 +54,11 @@ spring:
     maxWait: 60000
     testWhileIdle: true
     validationQuery: select 'x'
+  http:
+    multipart:
+      enabled: true
+      max-file-size: 20MB
+      max-request-size: 20MB
   redis:
     database: 0
     hostName: r-wz9dbc5c7dc742e4.redis.rds.aliyuncs.com
