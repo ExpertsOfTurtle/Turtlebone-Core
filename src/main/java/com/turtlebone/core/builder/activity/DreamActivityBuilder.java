@@ -84,7 +84,7 @@ public class DreamActivityBuilder {
 	    
 	    //将输入流中的数据复制到新文件
 	    FileUtils.copyInputStreamToFile(file.getInputStream(), f);
-	    
+	    f.setReadable(true, false);//设置为可读
 	    
 	    params.put("resultStr", localPath + newFileName);
 	    
