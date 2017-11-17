@@ -65,7 +65,7 @@ public class DreamActivityBuilder {
 	    String fileName = file.getOriginalFilename();
 	    String suffix = fileName.substring(fileName.lastIndexOf(".")+1);
 	    String allowSuffixs = "gif,jpg,jpeg,bmp,png,ico";
-	    if(allowSuffixs.indexOf(suffix) == -1){
+	    if(allowSuffixs.indexOf(suffix.toLowerCase()) == -1){
 	        params.put("resultStr", "not support the file type!");
 	        return false;
 	    }

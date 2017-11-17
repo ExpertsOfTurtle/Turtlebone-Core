@@ -91,7 +91,7 @@ function uploadPic() {
         success : function(result) {
 			console.log("done");
 			console.log(result);
-			$("#dreamDebug").append("uploadPic result:" + result + "<br>");
+			$("#dreamDebug").append("uploadPic result:" + result.resultStr + "<br>");
 			IMG_PATH = result.resultStr;
 		},
 		error : function() {
