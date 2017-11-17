@@ -7,7 +7,7 @@ function onSubmit() {
 	var rs = uploadPic();
 	$.when(rs).done(function(data){
 		$("#dreamDebug").append("uploadPic done<br>");
-		if (data.flag != false) {
+		if (data.flag == undefined || data.flag == null || data.flag == true) {
 			createDream();
 		}
 	});
