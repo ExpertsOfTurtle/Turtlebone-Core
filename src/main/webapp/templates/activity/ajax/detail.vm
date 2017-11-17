@@ -13,7 +13,6 @@
 				<h2>${detail.datetime}</h2>							
 				<p>${detail.result}</p>
 				<p>${detail.type}</p>
-				<p>${detail.strresult3}</p>
 				#if ("${detail.type}" == "DREAM")
 					#if("$!{detail.strresult3}" != "")
 						<img width="100%" src="$!{serverPath}$!{detail.strresult3}"/>

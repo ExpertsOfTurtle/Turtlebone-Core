@@ -3,8 +3,10 @@ var DREAM_PAGE = {
 	pageSize : 10
 }
 function onSubmit() {
+	$("#dreamDebug").append("onSubmit<br>");
 	var rs = uploadPic();
 	$.when(rs).done(function(data){
+		$("#dreamDebug").append("uploadPic done<br>");
 		if (data.flag != false) {
 			createDream();
 		}
@@ -73,6 +75,7 @@ function uploadPic() {
 	var filePath = $("#img").val();
 	IMG_PATH = "";
 	if (filePath == null || filePath == "") {
+		$("#dreamDebug").append("filePath:" + filePath + "<br>");
 		return null;
 	}
 	var rs = $.ajax({
@@ -88,9 +91,11 @@ function uploadPic() {
         success : function(result) {
 			console.log("done");
 			console.log(result);
+			$("#dreamDebug").append("uploadPic result:" + result + "<br>");
 			IMG_PATH = result.resultStr;
 		},
 		error : function() {
+			$("#dreamDebug").append("uploadPic fail<br>");
 			console.log("fail");
 		}
 	});

@@ -11,6 +11,9 @@
 			
 			<div role="main" class="ui-content">
 				<div data-demo-html="true">
+					<div id="dreamDebug"></div>
+				</div>
+				<div data-demo-html="true">
 					<label for="text-basic">Content:</label>
 					<textarea type="" name="content" id="content" value=""></textarea>
 				</div>
