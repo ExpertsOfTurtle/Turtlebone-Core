@@ -72,9 +72,7 @@ public class MainController {
 	@RequestMapping(value="/contract/{page}")
 	public String contractPage(Map<String, Object> model, @PathVariable("page") String page,
 			HttpServletResponse resp) {
-		logger.debug("go to {}.vm", page);
-		resp.setHeader("Access-Control-Allow-Origin", "*");
-		resp.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+		logger.debug("go to /contract/{}.vm", page);
 		return "contract/" + page;
 	}
 }

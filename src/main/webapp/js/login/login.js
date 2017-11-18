@@ -1,3 +1,7 @@
+var PROFILE = {
+	username : null,
+	tokenId : null
+}
 function onLogin() {
 	var username = $("#loginUsername").val();
 	var password = $("#loginPassword").val();
@@ -21,7 +25,8 @@ function onLogin() {
         },
         success : function(result) {
 			console.log(result);
-			TOKENID = result.tokenid;
+			PROFILE.tokenId = result.tokenid;
+			PROFILE.username = username;
 		},
 		error : function() {
 			console.log("fail");

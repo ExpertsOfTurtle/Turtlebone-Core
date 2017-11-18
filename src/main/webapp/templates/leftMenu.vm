@@ -20,5 +20,8 @@
 				<li>
 					<a href="/core/main/contract/list">Contract list.</a>
 				</li>
+				<li>
+					<a href="/core/main/contract/input">Create contract</a>
+				</li>
 			</ul>
 		</div>

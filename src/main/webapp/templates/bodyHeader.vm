@@ -4,13 +4,13 @@
 			<div data-role="navbar">
 				<ul>
 					<li>
-						<a href="/core/main/decide/list">List Selction</a>
+						<a href="/core/main/decide/list">SelctionList</a>
+					</li>					
+					<li>
+						<a href="/core/main/dream/list">DreamList</a>
 					</li>
 					<li>
-						<a href="/core/main/dream/input">createDream</a>
-					</li>
-					<li>
-						<a href="/core/main/dream/list">DreamList.</a>
+						<a href="/core/main/contract/list">ContractList</a>
 					</li>
 				</ul>
 			</div>
