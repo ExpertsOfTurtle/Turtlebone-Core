@@ -19,17 +19,29 @@ function onLogin() {
 		url : "/auth/token/create",
 		data : JSON.stringify(param),
 		contentType : "application/json; charset=utf-8",
-		dataType : "json",
+		dataType : "text",
 		beforeSend: function(){
             console.log("create token");
         },
         success : function(result) {
 			console.log(result);
-			PROFILE.tokenId = result.tokenid;
-			PROFILE.username = username;
+			var json = null;
+			var rs = "";
+			try {
+				json = JSON.parse(result);
+				rs = "Success，your tokenId:" + json.tokenid;
+				PROFILE.tokenId = json.tokenid;
+				PROFILE.username = username;
+				console.log(json);
+			} catch(e) {
+				console.log(e);
+				rs = result;
+			}
+			$("#loginResult").html(rs);
 		},
 		error : function() {
 			console.log("fail");
+			$("#loginResult").html("Fail");
 		}
 	});
 	return rs;

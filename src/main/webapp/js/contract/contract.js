@@ -1,4 +1,9 @@
-
+var ContractItem = {
+	id:null
+}
+function onSelectContract(id) {
+	ContractItem.id = id;
+}
 function loadAllContractList() {
 	var rs = $.ajax({
 		type:"POST",
@@ -62,7 +67,7 @@ function doSign(contractId,actionType) {
 		url:url,
 		data : JSON.stringify(param),
 		contentType:"application/json; charset=utf-8",
-		dataType : "json",
+		dataType : "text",
 		success : function (result) {
 			
 		},
@@ -70,4 +75,20 @@ function doSign(contractId,actionType) {
 			
 		}
 	});
+}
+function loadDetails(action) {
+		var url = "/contract/contract/" + action + "/" + ContractItem.id + "?tokenId=" + PROFILE.tokenId;
+		var rs = $.ajax({
+			type:"GET",
+			url:url,
+			contentType:"application/json; charset=utf-8",
+			dataType : "text",
+			success : function (result) {
+				$("#contractDetailsContent").html(result);
+				$("input[type=Button]").button();
+			},
+			error : function() {
+				
+			}
+		});
 }

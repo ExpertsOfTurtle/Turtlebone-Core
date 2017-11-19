@@ -20,7 +20,10 @@
 					<input type="password" name="loginPassword" id="loginPassword" 
 					placeholder="Input you password"></input>
 				</div>
-				<a onclick="onLogin();" href="#">Login</a>
+				<div data-demo-html="true" id="loginResult">
+				</div>
+				<a type="submit" onclick="onLogin();" href="#">Login</a>
+				
 			</div>
 		</div>
 		<!-- /page -->
