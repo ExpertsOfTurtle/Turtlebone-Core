@@ -39,6 +39,8 @@ mypath:
 mybatis:
   mapperLocations: classpath:mapper/*.xml
 redis.expireTime: 60
+constants:
+  emailTemplatePath: /data/emailTemplate/
 ---
 spring:
   profiles: prod
@@ -82,4 +84,5 @@ mypath:
 mybatis:
   mapperLocations: classpath:mapper/*.xml
 redis.expireTime: 3600
-
+constants:
+  emailTemplatePath: /data/emailTemplate/
