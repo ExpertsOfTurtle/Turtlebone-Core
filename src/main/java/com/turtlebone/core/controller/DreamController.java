@@ -76,6 +76,28 @@ public class DreamController {
 		activityService.create(activity);
 		return ResponseEntity.ok(activity);
 	}
+	
+	@RequestMapping(value = "/modify", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<?> modifiyDream(@RequestBody DreamActivityRequest request) {
+		logger.debug("request:{}", JSON.toJSONString(request));
+
+		UserModel user = userService.selectByUsername(request.getUsername());
+		if (user == null) {
+			return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("no such username!");
+		}
+		String username = request.getUsername();
+		String datetime = request.getDatetime();
+		ActivityModel activity = activityService.findByPrimaryKey(request.getDreamId());
+		logger.debug("activity:{}", JSON.toJSONString(activity));
+		if (activity == null) {
+			logger.error("No such dream, id={}", request.getDreamId());
+			return ResponseEntity.ok(activity);
+		}
+		activity.setResult(request.getContent());
+		activityService.updateByPrimaryKey(activity);
+		
+		return ResponseEntity.ok(activity);
+	}
 
 	@RequestMapping(value = "/query")
 	public String queryDream(Map<String, Object> model, @RequestBody QueryActivityRequest request) {

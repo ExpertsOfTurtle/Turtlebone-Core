@@ -48,7 +48,7 @@ function onCreateContract() {
 		contentType:"application/json; charset=utf-8",
 		dataType : "json",
 		success : function (result) {
-			
+			alert("Success");
 		},
 		error : function() {
 			
