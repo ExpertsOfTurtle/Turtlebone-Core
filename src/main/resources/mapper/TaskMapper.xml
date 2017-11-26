@@ -5,8 +5,10 @@
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="creator" property="creator" jdbcType="VARCHAR" />
     <result column="owner" property="owner" jdbcType="VARCHAR" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="deadline" property="deadline" jdbcType="VARCHAR" />
     <result column="punishment_id" property="punishmentId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="INTEGER" />
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
   </resultMap>
@@ -15,8 +17,10 @@
    `id`,
    `creator`,
    `owner`,
+   `title`,
    `deadline`,
    `punishment_id`,
+   `type`,
    `status`,
    `content`
  </sql>
@@ -38,8 +42,10 @@
      `id`,
      `creator`,
      `owner`,
+     `title`,
      `deadline`,
      `punishment_id`,
+     `type`,
      `status`,
      `content`
     )
@@ -47,8 +53,10 @@
      #{id,jdbcType=INTEGER},
      #{creator,jdbcType=VARCHAR},
      #{owner,jdbcType=VARCHAR},
+     #{title,jdbcType=VARCHAR},
      #{deadline,jdbcType=VARCHAR},
      #{punishmentId,jdbcType=INTEGER},
+     #{type,jdbcType=INTEGER},
      #{status,jdbcType=INTEGER},
      #{content,jdbcType=LONGVARCHAR}
  )
@@ -68,11 +76,17 @@
       <if test="owner != null" >
         `owner`,
       </if>
+      <if test="title != null" >
+        `title`,
+      </if>
       <if test="deadline != null" >
         `deadline`,
       </if>
       <if test="punishmentId != null" >
         `punishment_id`,
+      </if>
+      <if test="type != null" >
+        `type`,
       </if>
       <if test="status != null" >
         `status`,
@@ -91,11 +105,17 @@
       <if test="owner != null" >
         #{owner,jdbcType=VARCHAR},
       </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
       <if test="deadline != null" >
         #{deadline,jdbcType=VARCHAR},
       </if>
       <if test="punishmentId != null" >
         #{punishmentId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="status != null" >
         #{status,jdbcType=INTEGER},
@@ -115,11 +135,17 @@
        <if test="owner != null" >
         `owner`= #{owner,jdbcType=VARCHAR},
        </if>
+       <if test="title != null" >
+        `title`= #{title,jdbcType=VARCHAR},
+       </if>
        <if test="deadline != null" >
         `deadline`= #{deadline,jdbcType=VARCHAR},
        </if>
        <if test="punishmentId != null" >
         `punishment_id`= #{punishmentId,jdbcType=INTEGER},
+       </if>
+       <if test="type != null" >
+        `type`= #{type,jdbcType=INTEGER},
        </if>
        <if test="status != null" >
         `status`= #{status,jdbcType=INTEGER},
@@ -137,8 +163,10 @@
    `content` = #{content,jdbcType=LONGVARCHAR},
        `creator` = #{creator,jdbcType=VARCHAR},
        `owner` = #{owner,jdbcType=VARCHAR},
+       `title` = #{title,jdbcType=VARCHAR},
        `deadline` = #{deadline,jdbcType=VARCHAR},
        `punishment_id` = #{punishmentId,jdbcType=INTEGER},
+       `type` = #{type,jdbcType=INTEGER},
        `status` = #{status,jdbcType=INTEGER}
      where id = #{id,jdbcType=INTEGER}
   </update>
@@ -157,11 +185,17 @@
             <if test="owner != null" >
         and `owner` = #{owner,jdbcType=VARCHAR}
       </if>
+            <if test="title != null" >
+        and `title` = #{title,jdbcType=VARCHAR}
+      </if>
             <if test="deadline != null" >
         and `deadline` = #{deadline,jdbcType=VARCHAR}
       </if>
             <if test="punishmentId != null" >
         and `punishment_id` = #{punishmentId,jdbcType=INTEGER}
+      </if>
+            <if test="type != null" >
+        and `type` = #{type,jdbcType=INTEGER}
       </if>
             <if test="status != null" >
         and `status` = #{status,jdbcType=INTEGER}
@@ -185,11 +219,17 @@
         <if test="task.owner != null" >
       and `owner` = #{task.owner,jdbcType=VARCHAR}
     </if>
+        <if test="task.title != null" >
+      and `title` = #{task.title,jdbcType=VARCHAR}
+    </if>
         <if test="task.deadline != null" >
       and `deadline` = #{task.deadline,jdbcType=VARCHAR}
     </if>
         <if test="task.punishmentId != null" >
       and `punishment_id` = #{task.punishmentId,jdbcType=INTEGER}
+    </if>
+        <if test="task.type != null" >
+      and `type` = #{task.type,jdbcType=INTEGER}
     </if>
         <if test="task.status != null" >
       and `status` = #{task.status,jdbcType=INTEGER}
@@ -204,8 +244,10 @@
    order.property == 'id' 
    || order.property == 'creator'
    || order.property == 'owner'
+   || order.property == 'title'
    || order.property == 'deadline'
    || order.property == 'punishment_id'
+   || order.property == 'type'
    || order.property == 'status'
    || order.property == 'content'
         " >
