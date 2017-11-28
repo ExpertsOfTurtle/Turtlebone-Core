@@ -1,6 +1,9 @@
 
 package com.turtlebone.core.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.turtlebone.core.model.TaskModel;
 
 public interface TaskService{
@@ -19,5 +22,7 @@ public interface TaskService{
 	
 
 	public int selectCount(TaskModel taskModel);
+	
+	public List<TaskModel> selectPage(String creator, String type, String owner, Integer status, String from, String to);
 	
 }

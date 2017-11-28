@@ -48,7 +48,6 @@ public class EmailServiceImpl implements EmailService {
 			request.setReplyToAddress(true);
 			String address = getAddress(addressList);
 			request.setToAddress(address);
-//			
 			request.setSubject(title);
 			String filePath = getFilePath(template);
 			if (StringUtil.isEmpty(filePath)) {
@@ -56,6 +55,7 @@ public class EmailServiceImpl implements EmailService {
 			}
 			String html = IOUtil.readTxtFile(filePath);
 			request.setHtmlBody(html);
+			
 			SingleSendMailResponse httpResponse = client.getAcsResponse(request);
 			logger.debug("Email request id:{}", httpResponse.getRequestId());
 			logger.info("Sending email to {}", address);

@@ -1,265 +1,255 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.turtlebone.core.repository.TaskRepository" >
-  <resultMap id="BaseResultMap" type="com.turtlebone.core.entity.Task" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="creator" property="creator" jdbcType="VARCHAR" />
-    <result column="owner" property="owner" jdbcType="VARCHAR" />
-    <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="deadline" property="deadline" jdbcType="VARCHAR" />
-    <result column="punishment_id" property="punishmentId" jdbcType="INTEGER" />
-    <result column="type" property="type" jdbcType="INTEGER" />
-    <result column="status" property="status" jdbcType="INTEGER" />
-    <result column="content" property="content" jdbcType="LONGVARCHAR" />
-  </resultMap>
+<mapper namespace="com.turtlebone.core.repository.TaskRepository">
+	<resultMap id="BaseResultMap" type="com.turtlebone.core.entity.Task">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="creator" property="creator" jdbcType="VARCHAR" />
+		<result column="owner" property="owner" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="deadline" property="deadline" jdbcType="VARCHAR" />
+		<result column="punishment_id" property="punishmentId"
+			jdbcType="INTEGER" />
+		<result column="type" property="type" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="content" property="content" jdbcType="LONGVARCHAR" />
+	</resultMap>
 
- <sql id="Base_Column_List" >
-   `id`,
-   `creator`,
-   `owner`,
-   `title`,
-   `deadline`,
-   `punishment_id`,
-   `type`,
-   `status`,
-   `content`
- </sql>
-  
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from task
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from task
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  
-  <insert id="insert" parameterType="com.turtlebone.core.entity.Task" >
-    insert into task ( 
-     `id`,
-     `creator`,
-     `owner`,
-     `title`,
-     `deadline`,
-     `punishment_id`,
-     `type`,
-     `status`,
-     `content`
-    )
-    values (
-     #{id,jdbcType=INTEGER},
-     #{creator,jdbcType=VARCHAR},
-     #{owner,jdbcType=VARCHAR},
-     #{title,jdbcType=VARCHAR},
-     #{deadline,jdbcType=VARCHAR},
-     #{punishmentId,jdbcType=INTEGER},
-     #{type,jdbcType=INTEGER},
-     #{status,jdbcType=INTEGER},
-     #{content,jdbcType=LONGVARCHAR}
- )
-  </insert>
-  
-  
-  
-  <insert id="insertSelective" parameterType="com.turtlebone.core.entity.Task" >
-    insert into task
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        `id`,
-      </if>
-      <if test="creator != null" >
-        `creator`,
-      </if>
-      <if test="owner != null" >
-        `owner`,
-      </if>
-      <if test="title != null" >
-        `title`,
-      </if>
-      <if test="deadline != null" >
-        `deadline`,
-      </if>
-      <if test="punishmentId != null" >
-        `punishment_id`,
-      </if>
-      <if test="type != null" >
-        `type`,
-      </if>
-      <if test="status != null" >
-        `status`,
-      </if>
-      <if test="content != null" >
-        `content`,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="creator != null" >
-        #{creator,jdbcType=VARCHAR},
-      </if>
-      <if test="owner != null" >
-        #{owner,jdbcType=VARCHAR},
-      </if>
-      <if test="title != null" >
-        #{title,jdbcType=VARCHAR},
-      </if>
-      <if test="deadline != null" >
-        #{deadline,jdbcType=VARCHAR},
-      </if>
-      <if test="punishmentId != null" >
-        #{punishmentId,jdbcType=INTEGER},
-      </if>
-      <if test="type != null" >
-        #{type,jdbcType=INTEGER},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  
-  <update id="updateByPrimaryKeySelective" parameterType="com.turtlebone.core.entity.Task" >
-    update task
-	  <set>
-       <if test="creator != null" >
-        `creator`= #{creator,jdbcType=VARCHAR},
-       </if>
-       <if test="owner != null" >
-        `owner`= #{owner,jdbcType=VARCHAR},
-       </if>
-       <if test="title != null" >
-        `title`= #{title,jdbcType=VARCHAR},
-       </if>
-       <if test="deadline != null" >
-        `deadline`= #{deadline,jdbcType=VARCHAR},
-       </if>
-       <if test="punishmentId != null" >
-        `punishment_id`= #{punishmentId,jdbcType=INTEGER},
-       </if>
-       <if test="type != null" >
-        `type`= #{type,jdbcType=INTEGER},
-       </if>
-       <if test="status != null" >
-        `status`= #{status,jdbcType=INTEGER},
-       </if>
-           <if test="content != null" >
-        `content`= #{content,jdbcType=LONGVARCHAR},
-       </if>
-      </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  
-  <update id="updateByPrimaryKey" parameterType="com.turtlebone.core.entity.Task" >
-    update task
-    set 
-   `content` = #{content,jdbcType=LONGVARCHAR},
-       `creator` = #{creator,jdbcType=VARCHAR},
-       `owner` = #{owner,jdbcType=VARCHAR},
-       `title` = #{title,jdbcType=VARCHAR},
-       `deadline` = #{deadline,jdbcType=VARCHAR},
-       `punishment_id` = #{punishmentId,jdbcType=INTEGER},
-       `type` = #{type,jdbcType=INTEGER},
-       `status` = #{status,jdbcType=INTEGER}
-     where id = #{id,jdbcType=INTEGER}
-  </update>
-  
+	<sql id="Base_Column_List">
+		`id`,
+		`creator`,
+		`owner`,
+		`title`,
+		`deadline`,
+		`punishment_id`,
+		`type`,
+		`status`,
+		`content`
+	</sql>
 
-  
-  <select id="selectCount" resultType="java.lang.Integer" parameterType="com.turtlebone.core.entity.Task" >
-    select count(*) from task
-    <where >
-            <if test="id != null" >
-        and `id` = #{id,jdbcType=INTEGER}
-      </if>
-            <if test="creator != null" >
-        and `creator` = #{creator,jdbcType=VARCHAR}
-      </if>
-            <if test="owner != null" >
-        and `owner` = #{owner,jdbcType=VARCHAR}
-      </if>
-            <if test="title != null" >
-        and `title` = #{title,jdbcType=VARCHAR}
-      </if>
-            <if test="deadline != null" >
-        and `deadline` = #{deadline,jdbcType=VARCHAR}
-      </if>
-            <if test="punishmentId != null" >
-        and `punishment_id` = #{punishmentId,jdbcType=INTEGER}
-      </if>
-            <if test="type != null" >
-        and `type` = #{type,jdbcType=INTEGER}
-      </if>
-            <if test="status != null" >
-        and `status` = #{status,jdbcType=INTEGER}
-      </if>
-            <if test="content != null" >
-        and `content` = #{content,jdbcType=LONGVARCHAR}
-      </if>
-          </where>
-  </select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from task
+		where id = #{id,jdbcType=INTEGER}
+	</select>
 
-    <select id="selectPage" resultMap="BaseResultMap" >
-    select 
-    <include refid="Base_Column_List" />
-    from task where 1 = 1 
-        <if test="task.id != null" >
-      and `id` = #{task.id,jdbcType=INTEGER}
-    </if>
-        <if test="task.creator != null" >
-      and `creator` = #{task.creator,jdbcType=VARCHAR}
-    </if>
-        <if test="task.owner != null" >
-      and `owner` = #{task.owner,jdbcType=VARCHAR}
-    </if>
-        <if test="task.title != null" >
-      and `title` = #{task.title,jdbcType=VARCHAR}
-    </if>
-        <if test="task.deadline != null" >
-      and `deadline` = #{task.deadline,jdbcType=VARCHAR}
-    </if>
-        <if test="task.punishmentId != null" >
-      and `punishment_id` = #{task.punishmentId,jdbcType=INTEGER}
-    </if>
-        <if test="task.type != null" >
-      and `type` = #{task.type,jdbcType=INTEGER}
-    </if>
-        <if test="task.status != null" >
-      and `status` = #{task.status,jdbcType=INTEGER}
-    </if>
-        <if test="task.content != null" >
-      and `content` = #{task.content,jdbcType=LONGVARCHAR}
-    </if>
-        <if test="pageable.sort != null" >
-      order by 
-      <foreach collection="pageable.sort" item="order" separator="," >
-        <if test="
-   order.property == 'id' 
-   || order.property == 'creator'
-   || order.property == 'owner'
-   || order.property == 'title'
-   || order.property == 'deadline'
-   || order.property == 'punishment_id'
-   || order.property == 'type'
-   || order.property == 'status'
-   || order.property == 'content'
-        " >
-        		${order.property} ${order.direction}
-        </if>
-      </foreach>
-    </if>
-    <if test="pageable.offset >= 0 and pageable.pageSize > 0" >
-      limit ${pageable.offset}, ${pageable.pageSize}
-    </if>
-  </select>
- </mapper>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from task
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+
+	<insert id="insert" parameterType="com.turtlebone.core.entity.Task"
+	useGeneratedKeys="true" keyProperty="id">
+		insert into task (
+		`id`,
+		`creator`,
+		`owner`,
+		`title`,
+		`deadline`,
+		`punishment_id`,
+		`type`,
+		`status`,
+		`content`
+		)
+		values (
+		#{id,jdbcType=INTEGER},
+		#{creator,jdbcType=VARCHAR},
+		#{owner,jdbcType=VARCHAR},
+		#{title,jdbcType=VARCHAR},
+		#{deadline,jdbcType=VARCHAR},
+		#{punishmentId,jdbcType=INTEGER},
+		#{type,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER},
+		#{content,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+
+
+
+	<insert id="insertSelective" parameterType="com.turtlebone.core.entity.Task"
+	useGeneratedKeys="true" keyProperty="id">
+		insert into task
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				`id`,
+			</if>
+			<if test="creator != null">
+				`creator`,
+			</if>
+			<if test="owner != null">
+				`owner`,
+			</if>
+			<if test="title != null">
+				`title`,
+			</if>
+			<if test="deadline != null">
+				`deadline`,
+			</if>
+			<if test="punishmentId != null">
+				`punishment_id`,
+			</if>
+			<if test="type != null">
+				`type`,
+			</if>
+			<if test="status != null">
+				`status`,
+			</if>
+			<if test="content != null">
+				`content`,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="creator != null">
+				#{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="owner != null">
+				#{owner,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				#{title,jdbcType=VARCHAR},
+			</if>
+			<if test="deadline != null">
+				#{deadline,jdbcType=VARCHAR},
+			</if>
+			<if test="punishmentId != null">
+				#{punishmentId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="com.turtlebone.core.entity.Task">
+		update task
+		<set>
+			<if test="creator != null">
+				`creator`= #{creator,jdbcType=VARCHAR},
+			</if>
+			<if test="owner != null">
+				`owner`= #{owner,jdbcType=VARCHAR},
+			</if>
+			<if test="title != null">
+				`title`= #{title,jdbcType=VARCHAR},
+			</if>
+			<if test="deadline != null">
+				`deadline`= #{deadline,jdbcType=VARCHAR},
+			</if>
+			<if test="punishmentId != null">
+				`punishment_id`= #{punishmentId,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				`type`= #{type,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				`status`= #{status,jdbcType=INTEGER},
+			</if>
+			<if test="content != null">
+				`content`= #{content,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<update id="updateByPrimaryKey" parameterType="com.turtlebone.core.entity.Task">
+		update task
+		set
+		`content` = #{content,jdbcType=LONGVARCHAR},
+		`creator` = #{creator,jdbcType=VARCHAR},
+		`owner` = #{owner,jdbcType=VARCHAR},
+		`title` = #{title,jdbcType=VARCHAR},
+		`deadline` = #{deadline,jdbcType=VARCHAR},
+		`punishment_id` = #{punishmentId,jdbcType=INTEGER},
+		`type` = #{type,jdbcType=INTEGER},
+		`status` = #{status,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+
+
+	<select id="selectCount" resultType="java.lang.Integer"
+		parameterType="com.turtlebone.core.entity.Task">
+		select count(*) from task
+		<where>
+			<if test="id != null">
+				and `id` = #{id,jdbcType=INTEGER}
+			</if>
+			<if test="creator != null">
+				and `creator` = #{creator,jdbcType=VARCHAR}
+			</if>
+			<if test="owner != null">
+				and `owner` = #{owner,jdbcType=VARCHAR}
+			</if>
+			<if test="title != null">
+				and `title` = #{title,jdbcType=VARCHAR}
+			</if>
+			<if test="deadline != null">
+				and `deadline` = #{deadline,jdbcType=VARCHAR}
+			</if>
+			<if test="punishmentId != null">
+				and `punishment_id` = #{punishmentId,jdbcType=INTEGER}
+			</if>
+			<if test="type != null">
+				and `type` = #{type,jdbcType=INTEGER}
+			</if>
+			<if test="status != null">
+				and `status` = #{status,jdbcType=INTEGER}
+			</if>
+			<if test="content != null">
+				and `content` = #{content,jdbcType=LONGVARCHAR}
+			</if>
+		</where>
+	</select>
+
+	<select id="selectPage" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from task where 1 = 1
+		<if test="id != null">
+			and `id` = #{id,jdbcType=INTEGER}
+		</if>
+		<if test="creator != null">
+			and `creator` = #{creator,jdbcType=VARCHAR}
+		</if>
+		<if test="owner != null">
+			and id in (
+			select taskid from task_user where `username` = #{owner,jdbcType=VARCHAR}
+			)			
+		</if>
+		<if test="title != null">
+			and `title` = #{title,jdbcType=VARCHAR}
+		</if>
+		<if test="deadline != null">
+			and `deadline` = #{deadline,jdbcType=VARCHAR}
+		</if>
+		<if test="punishmentId != null">
+			and `punishment_id` = #{punishmentId,jdbcType=INTEGER}
+		</if>
+		<if test="type != null">
+			and `type` = #{type,jdbcType=INTEGER}
+		</if>
+		<if test="status != null">
+			and `status` = #{status,jdbcType=INTEGER}
+		</if>
+		<if test="content != null">
+			and `content` = #{content,jdbcType=LONGVARCHAR}
+		</if>
+		<if test="from != null and to != null">
+			and `deadline` between #{from,jdbcType=VARCHAR} and
+			#{to,jdbcType=VARCHAR}
+		</if>
+	</select>
+</mapper>
   
 
   

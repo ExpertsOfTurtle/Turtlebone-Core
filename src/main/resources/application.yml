@@ -41,6 +41,7 @@ mybatis:
 redis.expireTime: 60
 constants:
   emailTemplatePath: /data/emailTemplate/
+  excludeRegex: /core/task/query
 ---
 spring:
   profiles: prod
@@ -86,3 +87,4 @@ mybatis:
 redis.expireTime: 3600
 constants:
   emailTemplatePath: /data/emailTemplate/
+  excludeRegex: /core/task/query

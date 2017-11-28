@@ -2,6 +2,8 @@ package com.turtlebone.core.repository;
 
 import com.turtlebone.core.entity.Task;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
@@ -25,6 +27,6 @@ public interface TaskRepository{
 
     int selectCount(Task task);
 
-    List<Task> selectPage(@Param("task") Task task, @Param("pageable") Pageable pageable);
+    List<Task> selectPage(Map map);
 	
 }

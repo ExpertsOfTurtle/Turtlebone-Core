@@ -101,13 +101,17 @@ public class ActivityServiceImpl implements ActivityService {
 
 
 	@Override
-	public List<ActivityModel> selectByCondition(String username, String type, Integer pageSize, Integer offset) {
+	public List<ActivityModel> selectByCondition(String username, String type, String from, String to, Integer pageSize, Integer offset) {
 		Map<String, Object> map = new HashMap<>();
 		if (!StringUtil.isEmpty(username)) {
 			map.put("username", username);
 		}
 		if (!StringUtil.isEmpty(type)) {
 			map.put("type", type);
+		}
+		if (!StringUtil.isEmpty(from) && !StringUtil.isEmpty(to)) {
+			map.put("from", from);
+			map.put("to", to);
 		}
 		if (pageSize != null && offset != null) {
 			map.put("offset", offset);

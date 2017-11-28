@@ -1,6 +1,10 @@
 
 package com.turtlebone.core.service.impl;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -68,7 +72,10 @@ public class TaskServiceImpl implements TaskService {
 	 */
 	@Override
 	public int create(TaskModel taskModel) {
-		return taskRepo.insert(BeanCopyUtils.map(taskModel, Task.class));
+		Task task = BeanCopyUtils.map(taskModel, Task.class);
+		taskRepo.insert(task);
+		taskModel.setId(task.getId());
+		return task.getId();
 	}
 
 	/*
@@ -89,6 +96,20 @@ public class TaskServiceImpl implements TaskService {
 	@Override
 	public int selectCount(TaskModel taskModel) {
 		return taskRepo.selectCount(BeanCopyUtils.map(taskModel, Task.class));
+	}
+
+
+	@Override
+	public List<TaskModel> selectPage(String creator, String type, String owner, Integer status, String from, String to) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("creator", creator);
+		map.put("type", type);
+		map.put("owner", owner);
+		map.put("status", status);
+		map.put("from", from);
+		map.put("to", to);
+		List<Task> list = taskRepo.selectPage(map);
+		return BeanCopyUtils.mapList(list, TaskModel.class);
 	}
 
 

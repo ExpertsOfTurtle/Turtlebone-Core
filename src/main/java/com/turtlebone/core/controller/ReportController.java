@@ -48,22 +48,27 @@ import com.turtlebone.core.util.StringUtil;
 
 @Controller
 @EnableAutoConfiguration
-@RequestMapping(value = "/email")
-public class EmailController {
-	private static Logger logger = LoggerFactory.getLogger(EmailController.class);
+@RequestMapping(value = "/report")
+public class ReportController {
+	private static Logger logger = LoggerFactory.getLogger(ReportController.class);
 
 	@Autowired
 	private ActivityService activityService;
 	@Autowired
 	private EmailService emailService;
-	
-	@RequestMapping(value = "/send", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<?> sendEmail(@RequestBody SendEmailRequest request) {
 
-		String result = emailService.sendEmail(request.getAddressList(), request.getTitle(), request.getTemplate(),
-				request.getAlias());
+	@RequestMapping(value = "/cf/normal", method = RequestMethod.POST)
+	public String sendEmail(Map<String, Object> model) {
 
-		return ResponseEntity.ok(result);
+		String activityType = "COMPLETECF";
+		String from = DateUtil.getNDaysLater(-7, "yyyy-MM-dd");
+		String to = DateUtil.getNDaysLater(1, "yyyy-MM-dd");
+		List<ActivityModel> dfsList = activityService.selectByCondition("DFS", activityType, from, to, null, null);
+		List<ActivityModel> couldList = activityService.selectByCondition("Could", activityType, from, to, null, null);
+
+		model.put("dfsList", dfsList);
+		model.put("couldList", couldList);
+		return "report/cf/normal";
 	}
 
 }

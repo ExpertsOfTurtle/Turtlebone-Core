@@ -56,6 +56,7 @@ public class ActivityController {
 	public @ResponseBody ResponseEntity<?> queryActivity(@RequestBody QueryActivityRequest request) {
 		logger.debug("request:{}", JSON.toJSONString(request));
 		List<ActivityModel> list = activityService.selectByCondition(request.getUsername(), request.getType(),
+				null, null,
 				request.getPageSize(), request.getOffset());
 		return ResponseEntity.ok(list);
 	}
